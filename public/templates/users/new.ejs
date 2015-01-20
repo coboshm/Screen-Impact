@@ -1,0 +1,45 @@
+<% layout(layoutPath) -%>
+<% script('/js/app.js') %>
+<% script('/js/formModule.js') %>
+
+<div id="top" class="header" ng-app="formApp">
+    <div class="text-vertical-left">
+        <img src="/img/logo.png" alt="Screen Digital Signage Measure Logo" />
+    </div>
+    <div class="content-login">
+        <% if (!done) { %>
+        <div class="register-container" ng-controller="FormCtrlRegister">
+            <h3>Sign Up</h3>
+            <% if (error) { %>
+            <div id="output" class="alert alert-danger">
+                <%= error_msg %>
+            </div>
+            <% } else { %>
+            <div id="output-message" class="alert alert-not-danger">
+                {{model.message}}
+            </div>
+            <% } %>
+
+            <div class="form-box">
+                <form action="/register" method="post" >
+                    <input type="text" placeholder="First Name" ng-model="model.firstName" name="firstName" value="<%= user.firstName || "" %>">
+                    <input type="text" placeholder="Last Name" ng-model="model.lastName" name="lastName" value="<%= user.lastName || "" %>">
+                    <input type="email" placeholder="Email" ng-model="model.email" name="email"  value="<%= user.email || "" %>">
+                    <input type="text" placeholder="Username" ng-model="model.username" name="username" value="<%= user.username || "" %>">
+                    <input type="password" placeholder="Passowrd" ng-model="model.password" name="password">
+                    <input type="password" placeholder="Repeat Password" ng-model="model.passwordRepeat" name="passwordConfirmation" class="span3">
+                    <button class="btn btn-info btn-block login" type="submit" ng-disabled="!isFormValid()">Sign Up</button>
+                </form>
+            </div>
+        </div>
+        <% } else { %>
+        <div class="login-container">
+            <div id="output-message-done" class="alert alert-not-danger">
+                Your user account have been added!<br/>
+                You are going to receive an activation email! please see your email.<br><br>
+                Thanks!
+            </div>
+        </div>
+        <% } %>
+    </div>
+</div>

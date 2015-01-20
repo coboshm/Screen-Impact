@@ -1,0 +1,26 @@
+<% layout(layoutPath) -%>
+<% script('/js/app.js') %>
+<% script('/js/formModule.js') %>
+
+<div id="top" class="header" ng-app="formApp">
+    <div class="text-vertical-left">
+        <img src="/img/logo.png" alt="Screen Digital Signage Measure Logo" />
+    </div>
+    <div class="content-login">
+        <div class="login-container">
+            <h3>User Area:</h3>
+            <% if (error) { %>
+            <div id="output" class="alert alert-danger">
+                <%= error_msg %>
+            </div>
+            <% } %>
+            <div class="form-box">
+                <form action="/login" method="post" ng-controller="FormCtrl">
+                    <input name="username" ng-model="model.username" type="text" placeholder="Username">
+                    <input type="password" ng-model="model.password" placeholder="Password" name="password">
+                    <button class="btn btn-info btn-block login" type="submit" ng-disabled="!isFormValid()">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

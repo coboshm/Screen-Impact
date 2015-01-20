@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="Digital Signage without measurament of impact it's not Digital Signage!">
+      <meta name="author" content="Marc Cobos Hernandez">
+
+      <title>Screen Measure Impact</title>
+
+      <!-- Bootstrap Core CSS -->
+      <link href="/css/bootstrap.css" rel="stylesheet">
+
+      <!-- Custom CSS -->
+      <link href="css/sb-admin.css" rel="stylesheet">
+
+      <!-- Morris Charts CSS -->
+      <link href="css/plugins/morris.css" rel="stylesheet">
+      <!-- Custom Fonts -->
+      <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js" type="text/javascript"></script>
+
+      <%- scripts %>
+      <%- stylesheets %>
+
+</head>
+  <body>
+  <div id="wrapper">
+
+      <!-- Navigation -->
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <a class="navbar-brand" href="index.html">SB Admin</a>
+          </div>
+          </ul>
+          <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+          <div class="collapse navbar-collapse navbar-ex1-collapse">
+
+          </div>
+          <!-- /.navbar-collapse -->
+      </nav>
+
+      <div id="page-wrapper">
+        <%- body -%>
+      </div>
+
+  </body>
+    <% include scripts.ejs %>
+</html>
