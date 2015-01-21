@@ -24,7 +24,7 @@ app.set('views', __dirname + '/public/templates');
 app.set('view engine', 'ejs');
 app.use(express.favicon());
 app.use(express.logger('dev'));
-app.use(express.bodyParser());
+app.use(express.bodyParser({ keepExtensions: true, uploadDir: __dirname + "/public/uploads" }));
 app.use(expressValidator);
 app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
@@ -128,7 +128,9 @@ app.post('/login', redirectAuthenticated, users.authenticate);
 app.get('/register', redirectAuthenticated, users.register);
 app.post('/register', redirectAuthenticated, users.userValidations, users.create);
 app.get('/dashboard', ensureAuthenticated, dashboard.index);
+app.get('/assets', ensureAuthenticated, dashboard.assets);
 app.get('/logout', users.logout);
+app.post('/upload', dashboard.upload);
 app.all('*',redirectAuthenticated, welcome.not_found);
 
 // Start Server w/ DB Connection

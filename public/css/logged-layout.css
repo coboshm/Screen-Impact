@@ -1,0 +1,156 @@
+html, body {
+    font-family: Arial, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+
+header {
+    background-color: #ffffff;
+    border: 0;
+    border-bottom: 1px solid #d8d8d8;
+    border-bottom-width: 2px;
+    height: 70px;
+    line-height: 70px;
+    width: 100%;
+    vertical-align: baseline;
+    background-position:center;
+    background-size: cover;
+}
+
+.company-logo {
+    background: url('/img/logo.png') no-repeat;
+    background-size: 122px 34px;
+    float: left;
+    height: 44px;
+    margin: 17px 0 0 17px;
+    width: 168px;
+}
+
+
+#container {
+    bottom: 0;
+    float:  left;
+    height: 100%;
+    left: 0;
+    margin-top: 70px;
+    min-height: 100%;
+    min-width: 100%;
+    overflow-y: hidden;
+    position: fixed;
+    right: 0;
+    background-color: #f5f5f5;
+    top: 0;
+}
+
+#left-space {
+    float: left;
+    width: 222px;
+    border: 1px solid #d8d8d8;
+    background-color: #FEFEFE;
+    height: 302px;
+    border-bottom-width: 2px;
+    margin: 10px;
+}
+
+#right-space {
+    float: left;
+    left: 242px;
+    overflow: hidden;
+    position: fixed;
+    right: 0;
+    margin: 10px;
+    border: 1px solid #d8d8d8;
+    background-color: #FEFEFE;
+    min-height: 85%;
+    border-bottom-width: 2px;
+    padding: 10px;
+}
+
+#right-space-minor {
+    float: left;
+    top: 255px;
+    left: 242px;
+    overflow: hidden;
+    position: fixed;
+    right: 0;
+    margin: 10px;
+    border: 1px solid #d8d8d8;
+    background-color: #FEFEFE;
+    min-height: 60%;
+    border-bottom-width: 2px;
+    padding: 10px;
+}
+
+#top-bar {
+    float: left;
+    left: 242px;
+    overflow: hidden;
+    position: fixed;
+    right: 0;
+    margin: 10px;
+    border: 1px solid #d8d8d8;
+    background-color: #FEFEFE;
+    height: 175px;
+    border-bottom-width: 2px;
+    padding: 10px;
+
+}
+
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header li {
+    display: inline-table;
+    float: left;
+    line-height: 70px;
+    list-style: none;
+}
+
+
+#top-container li {
+    display: inline-table;
+    float: left;
+    list-style: none;
+}
+
+header li > a, header li > div > a, #top-container li > a, #top-menu li > div {
+    border-right: 1px solid #FFFFFF;
+    color: #777;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+
+header li.first > a:hover {
+    color: #777;
+    text-decoration: none;
+}
+
+header li.last > a:hover {
+    color: #ac2925;
+    text-decoration: none;
+}
+
+
+.cursor-def {
+    cursor: default;
+}
+
+
+header li.last > a {
+    border-right: none;
+    padding-right: 30px;
+}
+
+#header-menu-top {
+    display: block;
+    float: right;
+    font-size: 0.8em;
+    padding-top: 3px;
+}
+

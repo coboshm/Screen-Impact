@@ -7,13 +7,15 @@
       <meta name="description" content="Digital Signage without measurament of impact it's not Digital Signage!">
       <meta name="author" content="Marc Cobos Hernandez">
 
+
       <title>Screen Measure Impact</title>
 
       <!-- Bootstrap Core CSS -->
       <link href="/css/bootstrap.css" rel="stylesheet">
 
       <!-- Custom CSS -->
-      <link href="css/sb-admin.css" rel="stylesheet">
+      <link href="/css/sb-admin.css" rel="stylesheet" type="text/css"/>
+      <link href="/css/logged-layout.css" rel="stylesheet" type="text/css"/>
 
       <!-- Morris Charts CSS -->
       <link href="css/plugins/morris.css" rel="stylesheet">
@@ -27,26 +29,44 @@
 
 </head>
   <body>
-  <div id="wrapper">
-
-      <!-- Navigation -->
-      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-              <a class="navbar-brand" href="index.html">SB Admin</a>
-          </div>
+  <header>
+      <div>
+          <a class="company-logo" href="/dashboard"></a>
+          <ul id="header-menu-top">
+              <li class="cursor-def first">
+                  <a id="greeting">
+                      Welcome <strong> <%= (user.firstName && user.lastName) ? (user.firstName + ' ' + user.lastName) : user.email %> </strong>
+                  </a></li>
+              <li class="cursor-def"><a href='#'>Help</a></li>
+              <li class="logout-menu last"><a href='/logout'><i class="fa fa-fw fa-sign-out"></i> Log out</a></li>
           </ul>
-          <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-          <div class="collapse navbar-collapse navbar-ex1-collapse">
-
-          </div>
-          <!-- /.navbar-collapse -->
-      </nav>
-
-      <div id="page-wrapper">
-        <%- body -%>
       </div>
-
+  </header>
+  <div id="container">
+          <div id="left-space">
+              <ul class="nav navbar-nav side-nav">
+                  <li class="active">
+                      <a href="/dashboard"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                  </li>
+                  <li>
+                      <a href="/audience"><i class="fa fa-fw fa-bar-chart-o"></i> Audience</a>
+                  </li>
+                  <li>
+                      <a href="/screens"><i class="fa fa-fw fa-desktop"></i> Screens</a>
+                  </li>
+                  <li>
+                      <a href="/playlist"><i class="fa fa-fw fa-table"></i> PlayList</a>
+                  </li>
+                  <li>
+                      <a href="/assets"><i class="fa fa-fw fa-file"></i> Assets</a>
+                  </li>
+                  <li>
+                      <a href="/settings"><i class="fa fa-fw fa-wrench"></i> Settings</a>
+                  </li>
+              </ul>
+          </div>
+          <%- body -%>
+  </div>
   </body>
     <% include scripts.ejs %>
 </html>
