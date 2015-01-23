@@ -45,22 +45,22 @@
   <div id="container">
           <div id="left-space">
               <ul class="nav navbar-nav side-nav">
-                  <li class="active">
-                      <a href="/dashboard"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                  <li <% if(active == 1 ){ %> class="active-menu" <% } %>>
+                      <a href="/dashboard" ><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                   </li>
-                  <li>
+                  <li <% if(active == 2 ){ %> class="active-menu" <% } %>>
                       <a href="/audience"><i class="fa fa-fw fa-bar-chart-o"></i> Audience</a>
                   </li>
-                  <li>
-                      <a href="/screens"><i class="fa fa-fw fa-desktop"></i> Screens</a>
+                  <li <% if(active == 3 ){ %> class="active-menu" <% } %>>
+                      <a href="/screens" ><i class="fa fa-fw fa-desktop"></i> Screens</a>
                   </li>
-                  <li>
+                  <li <% if(active == 4 ){ %> class="active-menu" <% } %>>
                       <a href="/playlist"><i class="fa fa-fw fa-table"></i> PlayList</a>
                   </li>
-                  <li>
+                  <li <% if(active == 5 ){ %> class="active-menu" <% } %>>
                       <a href="/assets"><i class="fa fa-fw fa-file"></i> Assets</a>
                   </li>
-                  <li>
+                  <li <% if(active == 6 ){ %> class="active-menu" <% } %>>
                       <a href="/settings"><i class="fa fa-fw fa-wrench"></i> Settings</a>
                   </li>
               </ul>

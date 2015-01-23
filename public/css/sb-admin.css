@@ -115,7 +115,6 @@ ul.alert-dropdown {
 
 /* Side Navigation */
 
-@media(min-width:768px) {
     .side-nav {
         border: none;
         border-radius: 0;
@@ -127,7 +126,6 @@ ul.alert-dropdown {
         color: #777;
     }
 
-}
 
 .side-nav>li>ul {
     padding: 0;

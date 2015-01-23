@@ -4021,12 +4021,25 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar-nav .open .dropdown-menu > li > a:focus {
     background-image: none;
   }
+
+
 }
-@media (min-width: 768px) {
-  .navbar-nav {
+
+.navbar-nav {
     float: left;
     margin: 0;
-  }
+}
+
+.navbar-nav > li {
+    float: left;
+}
+.navbar-nav > li > a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+@media (min-width: 768px) {
+
   .navbar-nav > li {
     float: left;
   }
@@ -4035,6 +4048,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     padding-bottom: 15px;
   }
 }
+
 .navbar-form {
   padding: 10px 15px;
   margin-top: 8px;
