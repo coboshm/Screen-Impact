@@ -6,6 +6,7 @@ var express = require('express')
   , User = mongoose.model('User')
   , welcome = require('./lib/controllers/welcome')
   , dashboard = require('./lib/controllers/dashboard')
+  , apiWeb = require('./lib/controllers/apiWeb')
   , users = require('./lib/controllers/users')
   , http = require('http')
   , path = require('path')
@@ -131,6 +132,8 @@ app.get('/dashboard', ensureAuthenticated, dashboard.index);
 app.get('/assets', ensureAuthenticated, dashboard.assets);
 app.get('/logout', users.logout);
 app.post('/upload', dashboard.upload);
+
+app.get('/apiWeb/assets', apiWeb.assets);
 app.all('*',redirectAuthenticated, welcome.not_found);
 
 // Start Server w/ DB Connection

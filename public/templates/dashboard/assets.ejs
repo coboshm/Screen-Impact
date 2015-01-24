@@ -1,18 +1,26 @@
 <% layout(layoutPathLogged) -%>
 <% stylesheet('/css/dropzone.css') %>
+<% script('/js/resources.js') %>
+<% script('/js/assetsModule.js') %>
+<% script('/js/app.js') %>
 <% script('/js/jquery.js') %>
 <% script('/js/dropzone.js') %>
 <% script('/js/dropzone-directive.js') %>
 
-<div ng-app="app">
-    <div id="top-bar">
+<div id="right-container"  ng-app="ScreensApp">
+
+    <div id="bar-small">
+
+    </div>
+    <div id="bar-medium">
         <div ng-controller="SomeCtrl">
                     <form dropzone="dropzoneConfig" class="dropzone" id="my-awesome-dropzone">
                     </form>
          </div>
     </div>
 
-    <div id="right-space-minor">
+    <div id="right-space-minor" ng-controller="AssetsController as ctrAssets">
         Welcome to your assets, <%= user.firstName %>.
+
     </div>
 </div>
