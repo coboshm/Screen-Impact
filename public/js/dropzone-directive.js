@@ -27,7 +27,7 @@ angular.module('dropzone', []).directive('dropzone', function () {
 
 angular.module('ScreensApp', ['APIModule', 'AssetsModule', 'dropzone']);
 
-angular.module('ScreensApp').controller('SomeCtrl', function ($scope) {
+angular.module('ScreensApp').controller('SomeCtrl', function ($scope, $rootScope) {
   $scope.dropzoneConfig = {
     'options': { // passed into the Dropzone constructor
       'acceptedFiles': 'image/*, video/*',
@@ -37,6 +37,7 @@ angular.module('ScreensApp').controller('SomeCtrl', function ($scope) {
       'sending': function (file, xhr, formData) {
       },
       'success': function (file, response) {
+            $rootScope.$emit(EVENTS.UPDATED_FILE);
       }
     }
   };

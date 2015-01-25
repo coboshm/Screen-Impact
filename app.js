@@ -10,6 +10,7 @@ var express = require('express')
   , users = require('./lib/controllers/users')
   , http = require('http')
   , path = require('path')
+  , qt = require('quickthumb')
   , engine = require('ejs-locals')
   , flash = require('connect-flash')
   , passport = require('passport')
@@ -23,6 +24,7 @@ app.engine('ejs', engine);
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/public/templates');
 app.set('view engine', 'ejs');
+app.use('/public/uploads/', qt.static(__dirname + '/public/uploads'));
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser({ keepExtensions: true, uploadDir: __dirname + "/public/uploads" }));
@@ -134,6 +136,7 @@ app.get('/logout', users.logout);
 app.post('/upload', dashboard.upload);
 
 app.get('/apiWeb/assets', apiWeb.assets);
+app.post('/apiWeb/assetsDelete', apiWeb.assetsDelete);
 app.all('*',redirectAuthenticated, welcome.not_found);
 
 // Start Server w/ DB Connection

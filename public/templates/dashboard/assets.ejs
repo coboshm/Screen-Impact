@@ -1,26 +1,54 @@
 <% layout(layoutPathLogged) -%>
 <% stylesheet('/css/dropzone.css') %>
+<% stylesheet('/css/assetsLayout.css') %>
+<% script('/js/jquery.js') %>
 <% script('/js/resources.js') %>
 <% script('/js/assetsModule.js') %>
 <% script('/js/app.js') %>
-<% script('/js/jquery.js') %>
 <% script('/js/dropzone.js') %>
 <% script('/js/dropzone-directive.js') %>
 
 <div id="right-container"  ng-app="ScreensApp">
 
-    <div id="bar-small">
-
-    </div>
     <div id="bar-medium">
         <div ng-controller="SomeCtrl">
                     <form dropzone="dropzoneConfig" class="dropzone" id="my-awesome-dropzone">
                     </form>
          </div>
     </div>
-
-    <div id="right-space-minor" ng-controller="AssetsController as ctrAssets">
-        Welcome to your assets, <%= user.firstName %>.
-
+    <div  ng-controller="AssetsController as ctrAssets">
+        <div id="bar-small">
+            <div class="space-content">
+                <span class="bold_span">Space used:</span> <%= cuota_used %> <span class="bold_span">of</span> <%= cuota%>
+            </div>
+            <div class="search-content">
+                <span class="bold_span">Search: </span> <input  ng-model="searchText" type="search" name="search_asset" placeholder="...">
+            </div>
+        </div>
+        <div id="right-space-minor">
+            <table style="width:100%">
+                <tr ng-repeat="asset in assets | filter:searchText">
+                    <td class="thumbnail_field"><img src="{{asset.thumbnail}}" width="100"/></td>
+                    <td class="name">
+                        <p>Name</p>
+                        <div class="font-assets">{{asset.name | limitTo: 40}}</div>
+                    </td>
+                    <td class="small">
+                        <p>Type&nbsp;&nbsp;</p><i class="fa2 fa-film"> / <i class="fa2 fa-photo">
+                        <div class="font-assets">{{asset.tipo}}</div>
+                    </td>
+                    <td class="small">
+                        <p>Duration</p>
+                        <div class="font-assets">{{ctrAssets.durationTime(asset.duration)}}</div>
+                    </td>
+                    <td class="small">
+                        <p>Size</p>
+                        <div class="font-assets">{{ctrAssets.bytesSize(asset.size)}}</div>
+                    </td>
+                    <td class="menu_preview"><i class="fa2 fa-play-circle"> Preview </td>
+                    <td class="menu_delete" ng-click="ctrAssets.deleteRow(asset._id)"><i class="fa2 fa-trash-o"> Delete </td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>

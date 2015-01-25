@@ -4,3 +4,8 @@
 var ScreensApp = angular.module('ScreensApp', ['APIModule', 'AssetsModule']);
 
 var formApp = angular.module('formApp', ['FormModule']);
+
+
+var EVENTS = {
+    UPDATED_FILE: 'fileUpdated'
+};
