@@ -132,10 +132,12 @@ app.get('/register', redirectAuthenticated, users.register);
 app.post('/register', redirectAuthenticated, users.userValidations, users.create);
 app.get('/dashboard', ensureAuthenticated, dashboard.index);
 app.get('/assets', ensureAuthenticated, dashboard.assets);
+app.get('/playlist', ensureAuthenticated, dashboard.playlist);
 app.get('/logout', users.logout);
 app.post('/upload', dashboard.upload);
 
 app.get('/apiWeb/assets', apiWeb.assets);
+app.get('/apiWeb/userCuota', apiWeb.userCuota);
 app.post('/apiWeb/assetsDelete', apiWeb.assetsDelete);
 app.all('*',redirectAuthenticated, welcome.not_found);
 

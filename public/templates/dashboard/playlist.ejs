@@ -1,0 +1,18 @@
+<% layout(layoutPathLogged) -%>
+<% stylesheet('/css/playlistLayout.css') %>
+<div id="right-container"  ng-app="ScreensApp" ng-controller="PlaylistController as ctrPlaylist">
+    <modalplaylist  title="Photo Modal" visible="showModalNew">
+        hello
+    </modalplaylist>
+    <div id="bar-small">
+        <div class="space-content">
+            <div ng-click="ctrPlaylist.toggleModal()" class="btn btn-success"><i class="fa fa-rocket"></i>&nbsp;&nbsp;New</div>
+        </div>
+        <div class="search-content">
+            <span class="bold_span">Search: </span> <input  ng-model="searchText" type="search" name="search_asset" placeholder="...">
+        </div>
+    </div>
+    <div id="right-space-minor">
+        Welcome to your dashboard, <%= user.firstName %>.
+    </div>
+</div>

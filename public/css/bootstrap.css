@@ -5471,6 +5471,37 @@ a.list-group-item-danger.active:focus {
   filter: alpha(opacity=20);
   opacity: .2;
 }
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    filter: alpha(opacity=50);
+    opacity: .5;
+}
+
+.close_video {
+    float: right;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-shadow: 0 1px 0 #fff;
+    border: 1px solid #843534;
+    border-radius: 20px;
+    background-color: #EE0000;
+    margin-top: -14px;
+    margin-right: -14px;
+    z-index: 20;
+}
+
+.close_video:hover,
+.close_video:focus {
+    text-decoration: none;
+    background-color: #FF0000;
+    cursor: pointer;
+}
 .close:hover,
 .close:focus {
   color: #000;
@@ -5568,6 +5599,11 @@ button.close {
   position: relative;
   padding: 15px;
 }
+
+.modal-body-video {
+    padding: 15px;
+}
+
 .modal-footer {
   padding: 15px;
   text-align: right;

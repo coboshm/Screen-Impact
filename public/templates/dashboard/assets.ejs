@@ -2,9 +2,6 @@
 <% stylesheet('/css/dropzone.css') %>
 <% stylesheet('/css/assetsLayout.css') %>
 <% script('/js/jquery.js') %>
-<% script('/js/resources.js') %>
-<% script('/js/assetsModule.js') %>
-<% script('/js/app.js') %>
 <% script('/js/dropzone.js') %>
 <% script('/js/dropzone-directive.js') %>
 
@@ -19,36 +16,53 @@
     <div  ng-controller="AssetsController as ctrAssets">
         <div id="bar-small">
             <div class="space-content">
-                <span class="bold_span">Space used:</span> <%= cuota_used %> <span class="bold_span">of</span> <%= cuota%>
+                <span class="bold_span">Space used:</span> {{ctrAssets.bytesSize(userCuota.cuota_used)}} <span class="bold_span">of</span> {{ctrAssets.bytesSize(userCuota.cuota)}}
             </div>
             <div class="search-content">
                 <span class="bold_span">Search: </span> <input  ng-model="searchText" type="search" name="search_asset" placeholder="...">
             </div>
         </div>
+
+        <!-- Modal -->
+        <modal  title="VideoModal" visible="showModal">
+            <section class="video" ng-video ng-model="interface">
+                <section vi-controls class="controls">
+                    <span ng-click="interface.controls.play()" title="Play" class="glyphicon glyphicon-play"></span>
+                    <span ng-click="interface.controls.pause()" title="Pause" class="glyphicon glyphicon-pause"></span>
+                </section>
+            </section>
+        </modal>
+
+        <modal  title="Photo Modal" visible="showModalPhoto">
+            <img src="{{photoSelected}}" width="570px" />
+        </modal>
+          <!-- /Modal -->
+
+
         <div id="right-space-minor">
-            <table style="width:100%">
-                <tr ng-repeat="asset in assets | filter:searchText">
-                    <td class="thumbnail_field"><img src="{{asset.thumbnail}}" width="100"/></td>
-                    <td class="name">
-                        <p>Name</p>
-                        <div class="font-assets">{{asset.name | limitTo: 40}}</div>
-                    </td>
-                    <td class="small">
-                        <p>Type&nbsp;&nbsp;</p><i class="fa2 fa-film"> / <i class="fa2 fa-photo">
-                        <div class="font-assets">{{asset.tipo}}</div>
-                    </td>
-                    <td class="small">
-                        <p>Duration</p>
-                        <div class="font-assets">{{ctrAssets.durationTime(asset.duration)}}</div>
-                    </td>
-                    <td class="small">
-                        <p>Size</p>
-                        <div class="font-assets">{{ctrAssets.bytesSize(asset.size)}}</div>
-                    </td>
-                    <td class="menu_preview"><i class="fa2 fa-play-circle"> Preview </td>
-                    <td class="menu_delete" ng-click="ctrAssets.deleteRow(asset._id)"><i class="fa2 fa-trash-o"> Delete </td>
-                </tr>
-            </table>
+                <table style="width:100%">
+                    <tr ng-repeat="asset in assets | filter:searchText">
+                        <td class="thumbnail_field"><img src="{{asset.thumbnail}}" width="100px"/></td>
+                        <td class="name">
+                            <p>Name</p>
+                            <div class="font-assets">{{asset.name | limitTo: 40}}</div>
+                        </td>
+                        <td class="small">
+                            <p>Type&nbsp;&nbsp;</p><i class="fa2 fa-film"> / <i class="fa2 fa-photo">
+                            <div class="font-assets">{{asset.tipo}}</div>
+                        </td>
+                        <td class="small">
+                            <p>Duration</p>
+                            <div class="font-assets">{{ctrAssets.durationTime(asset.duration)}}</div>
+                        </td>
+                        <td class="small">
+                            <p>Size</p>
+                            <div class="font-assets">{{ctrAssets.bytesSize(asset.size)}}</div>
+                        </td>
+                        <td class="menu_preview" ng-click="ctrAssets.toggleModal(asset.path, asset.tipo)"><i class="fa2 fa-play-circle"></i> Preview </td>
+                        <td class="menu_delete" ng-click="ctrAssets.deleteRow(asset._id)"><i class="fa2 fa-trash-o"></i> Delete </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
-</div>

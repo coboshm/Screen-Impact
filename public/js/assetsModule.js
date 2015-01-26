@@ -1,14 +1,14 @@
 /**
  * Created by cobos on 23/01/15.
  */
-var assetsModule = angular.module('AssetsModule', []);
+var assetsModule = angular.module('AssetsModule', ['ngVideo']);
 
-assetsModule.controller('AssetsController', ['$rootScope', '$scope', '$http', 'Assets',
+assetsModule.controller('AssetsController', ['$rootScope', '$scope', '$http', '$timeout', '$location', 'Assets', 'UserCuota',
 
-    function($rootScope, $scope, $http, Assets) {
+    function($rootScope, $scope, $http, $timeout, $location, Assets, UserCuota) {
 
-        var preview = function() {
-        };
+        $scope.interface = {};
+
 
         var DeleteRow = function (id) {
             $http({
@@ -19,17 +19,44 @@ assetsModule.controller('AssetsController', ['$rootScope', '$scope', '$http', 'A
                 }
             }).success(function(res) {
                 $scope.assets = Assets.query(function(assets) {});
+                $scope.userCuota = UserCuota.query(function(user) {});
             }).error(function(data, status, headers, config) {});
-        }
+        };
+
+
+        var toggleModal = function(play, tipo){
+            if (tipo.split('/')[0] === 'image') {
+                $scope.showModalPhoto = !$scope.showModalPhoto;
+                $scope.photoSelected = play;
+            } else {
+                $scope.interface.sources.clear();
+                $scope.showModal = !$scope.showModal;
+                path = $location.absUrl().split('/');
+                path_large = path[0] + '//' + path[2] + play;
+                $scope.playing = path_large;
+                $scope.interface.options.setAutoplay(true);
+                $scope.interface.sources.add(path_large);
+            }
+        };
+
+
 
         $scope.assets = [];
+        $scope.userCuota = [];
+        $scope.showModal = false;
+        $scope.photoSelected = '';
+
+
         $scope.assets = Assets.query(function(assets) {});
+        $scope.userCuota = UserCuota.query(function(user) {});
+
 
         $scope.init = function() {
         };
 
         $rootScope.$on(EVENTS.UPDATED_FILE, function(event) {
             $scope.assets = Assets.query(function(assets) {});
+            $scope.userCuota = UserCuota.query(function(user) {});
         });
 
         var DurationTime = function(secs) {
@@ -68,10 +95,51 @@ assetsModule.controller('AssetsController', ['$rootScope', '$scope', '$http', 'A
         $scope.init();
 
         return {
-            preview: preview,
             durationTime: DurationTime,
             bytesSize: bytesToSize,
-            deleteRow: DeleteRow
+            deleteRow: DeleteRow,
+            toggleModal: toggleModal
         };
     }
 ]);
+
+
+assetsModule.directive('modal', function () {
+    return {
+        template: '<div class="modal fade">' +
+            '<div class="modal-dialog">' +
+            '<div class="modal-content">' +
+            '<button type="button" ng-click="interface.controls.pause();" class="close_video" data-dismiss="modal" aria-hidden="true">&times;</button>' +
+            '<div class="modal-body-video" ng-transclude></div>' +
+            '</div>' +
+            '</div>' +
+            '</div>',
+        restrict: 'E',
+        transclude: true,
+        replace:true,
+        scope:true,
+        link: function postLink(scope, element, attrs) {
+            scope.title = attrs.title;
+
+            scope.$watch(attrs.visible, function(value){
+                if(value == true)
+                    $(element).modal('show');
+                else
+                    $(element).modal('hide');
+            });
+
+            $(element).on('shown.bs.modal', function(){
+                scope.$apply(function(){
+                    scope.$parent[attrs.visible] = true;
+                });
+            });
+
+            $(element).on('hidden.bs.modal', function(){
+                scope.$apply(function(){
+                    scope.$parent[attrs.visible] = false;
+                });
+            });
+        }
+    };
+});
+

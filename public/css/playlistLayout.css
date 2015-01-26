@@ -1,0 +1,96 @@
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('../font-awesome/fonts/fontawesome-webfont.eot?v=4.2.0');
+    src: url('../font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.2.0') format('embedded-opentype'), url('../font-awesome/fonts/fontawesome-webfont.woff?v=4.2.0') format('woff'), url('../font-awesome/fonts/fontawesome-webfont.ttf?v=4.2.0') format('truetype'), url('../font-awesome/fonts/fontawesome-webfont.svg?v=4.2.0#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+tr:not(:last-child) > td{
+    padding: 0.7em;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+
+tr:last-child > td{
+    padding: 0.7em;
+}
+
+td.thumbnail_field {
+    width: 10%;
+}
+
+td.name  {
+    width: 20%;
+}
+
+td.small {
+    width: 15%;
+}
+
+td.menu_preview {
+    width: 15%;
+    color: #3d8b3d;
+}
+
+td.menu_delete {
+    width: 15%;
+    color: #843534;
+}
+
+td.menu_preview:hover {
+    width: 15%;
+    color: #00BB00;
+    cursor: pointer;
+}
+
+td.menu_delete:hover {
+    cursor: pointer;
+    width: 15%;
+    color: #BB0000;
+}
+
+td > p {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.fa2 {
+    font: normal normal normal 14px/1 FontAwesome;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.font-assets {
+    font-size: 12px;
+
+}
+
+span.bold_span {
+    font-weight: bold;
+    padding: 5px;
+}
+
+input[type=search] {
+    cursor: pointer;
+    width: 150px;
+    border: 1px solid #cfcfcf;
+    padding: 4px 12px;
+    border-radius: 8px;
+    -webkit-appearance: none;
+    background-color: #fcfcfc;
+}
+
+.search-content {
+    float: right;
+    margin-top: 2px;
+}
+
+.space-content {
+    display: inline-block;
+    width: 600px;
+}
+
+*:focus {
+    outline: 0;
+}
