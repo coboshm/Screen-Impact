@@ -133,6 +133,7 @@ app.post('/register', redirectAuthenticated, users.userValidations, users.create
 app.get('/dashboard', ensureAuthenticated, dashboard.index);
 app.get('/assets', ensureAuthenticated, dashboard.assets);
 app.get('/playlist', ensureAuthenticated, dashboard.playlist);
+app.get('/new_playlist', ensureAuthenticated, dashboard.newPlaylist);
 app.get('/logout', users.logout);
 app.post('/upload', dashboard.upload);
 

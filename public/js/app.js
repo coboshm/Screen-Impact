@@ -1,7 +1,7 @@
 /**
  * Created by cobos on 20/01/15.
  */
-var ScreensApp = angular.module('ScreensApp', ['APIModule', 'AssetsModule', 'ngVideo', 'playlistModule']);
+var ScreensApp = angular.module('ScreensApp', ['APIModule', 'AssetsModule', 'ngVideo', 'playlistModule', 'ngQuickDate', 'as.sortable' ]);
 
 var formApp = angular.module('formApp', ['FormModule']);
 

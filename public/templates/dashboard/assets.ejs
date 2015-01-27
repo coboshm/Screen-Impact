@@ -24,7 +24,7 @@
         </div>
 
         <!-- Modal -->
-        <modal  title="VideoModal" visible="showModal">
+        <modal  title="VideoModal"  visible="showModal">
             <section class="video" ng-video ng-model="interface">
                 <section vi-controls class="controls">
                     <span ng-click="interface.controls.play()" title="Play" class="glyphicon glyphicon-play"></span>
@@ -40,29 +40,29 @@
 
 
         <div id="right-space-minor">
-                <table style="width:100%">
-                    <tr ng-repeat="asset in assets | filter:searchText">
-                        <td class="thumbnail_field"><img src="{{asset.thumbnail}}" width="100px"/></td>
-                        <td class="name">
-                            <p>Name</p>
-                            <div class="font-assets">{{asset.name | limitTo: 40}}</div>
-                        </td>
-                        <td class="small">
-                            <p>Type&nbsp;&nbsp;</p><i class="fa2 fa-film"> / <i class="fa2 fa-photo">
-                            <div class="font-assets">{{asset.tipo}}</div>
-                        </td>
-                        <td class="small">
-                            <p>Duration</p>
-                            <div class="font-assets">{{ctrAssets.durationTime(asset.duration)}}</div>
-                        </td>
-                        <td class="small">
-                            <p>Size</p>
-                            <div class="font-assets">{{ctrAssets.bytesSize(asset.size)}}</div>
-                        </td>
-                        <td class="menu_preview" ng-click="ctrAssets.toggleModal(asset.path, asset.tipo)"><i class="fa2 fa-play-circle"></i> Preview </td>
-                        <td class="menu_delete" ng-click="ctrAssets.deleteRow(asset._id)"><i class="fa2 fa-trash-o"></i> Delete </td>
-                    </tr>
-                </table>
-            </div>
+            <table style="width:100%">
+                <tr ng-repeat="asset in assets | filter:searchText">
+                    <td class="thumbnail_field"><img src="{{asset.thumbnail}}" width="100px"/></td>
+                    <td class="name">
+                        <p>Name</p>
+                        <div class="font-assets">{{asset.name | limitTo: 40}}</div>
+                    </td>
+                    <td class="small">
+                        <p>Type&nbsp;&nbsp;</p><i class="fa2 fa-film"> / <i class="fa2 fa-photo">
+                        <div class="font-assets">{{asset.tipo}}</div>
+                    </td>
+                    <td class="small">
+                        <p>Duration</p>
+                        <div class="font-assets">{{ctrAssets.durationTime(asset.duration)}}</div>
+                    </td>
+                    <td class="small">
+                        <p>Size</p>
+                        <div class="font-assets">{{ctrAssets.bytesSize(asset.size)}}</div>
+                    </td>
+                    <td class="menu_preview" ng-click="ctrAssets.toggleModal(asset.path, asset.tipo)"><i class="fa2 fa-play-circle"></i> Preview </td>
+                    <td class="menu_delete" ng-click="ctrAssets.deleteRow(asset._id)"><i class="fa2 fa-trash-o"></i> Delete </td>
+                </tr>
+            </table>
         </div>
     </div>
+</div>

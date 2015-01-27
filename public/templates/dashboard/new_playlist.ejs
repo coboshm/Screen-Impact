@@ -1,0 +1,81 @@
+<% layout(layoutPathLogged) -%>
+<% stylesheet('/css/ng-sortable.min.css') %>
+<% stylesheet('/css/playlistLayout.css') %>
+<% stylesheet('/css/ng-quick-date.css') %>
+<% stylesheet('/css/ng-quick-date-default-theme.css') %>
+
+<div id="right-container"  ng-app="ScreensApp" ng-controller="NewPlaylistController as ctrPlaylist">
+
+
+    <modalplaylist  title="Photo Modal" visible="showModalNew">
+        <div class="right-content">
+            <span class="bold_span">Search: </span> <input  ng-model="searchText" type="search" name="search_asset" placeholder="...">
+        </div>
+        <div class="table-assets-popup">
+            <table style="width:100%">
+                <tr ng-repeat="asset in allAssets | filter:searchText">
+                    <td class="small" ng-click="ctrPlaylist.addItem(asset)">
+                        <div class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add</div>
+                    </td>
+                    <td class="thumbnail_field"><img src="{{asset.thumbnail}}" width="100px"/></td>
+                    <td class="name">
+                        <p>Name</p>
+                        <div class="font-assets">{{asset.name | limitTo: 40}}</div>
+                    </td>
+                    <td class="small">
+                        <p>Type&nbsp;&nbsp;</p><i class="fa2 fa-film"></i> / <i class="fa2 fa-photo"></i>
+                                <div class="font-assets">{{asset.tipo}}</div>
+                    </td>
+                    <td class="small">
+                        <p>Duration</p>
+                        <div class="font-assets">{{ctrPlaylist.durationTime(asset.duration)}}</div>
+                    </td>
+                    <td class="menu_preview" ng-click="ctrPlaylist.toggleModal2(asset.path, asset.tipo)"><i class="fa2 fa-play-circle"></i> Preview </td>
+                </tr>
+            </table>
+        </div>
+    </modalplaylist>
+
+    <modalinit  title="VideoModal"  visible="showModal">
+        <section class="video" ng-video ng-model="interface">
+            <section vi-controls class="controls">
+                <span ng-click="interface.controls.play()" title="Play" class="glyphicon glyphicon-play"></span>
+                <span ng-click="interface.controls.pause()" title="Pause" class="glyphicon glyphicon-pause"></span>
+            </section>
+        </section>
+    </modalinit>
+
+    <modalinit  title="Photo Modal" visible="showModalPhoto">
+        <img src="{{photoSelected}}" width="570px" />
+    </modalinit>
+
+    <div id="bar-small">
+        <div class="space-content">
+            <span style="font-weight: bold">Create Playlist</span>
+        </div>
+    </div>
+    <div id="right-space-minor">
+          <div class="margin_top_space_minor">
+              <p class="float">Name</p>
+              <input type="text" class="input-style-large" placeholder="Playlist name">
+          </div>
+          <div class="margin_top_space">
+              <p class="float">Schedule</p>
+              <quick-datepicker icon-class='fa fa-calendar' name='from' ng-model='from' class="input-style-large" placeholder="From" ></quick-datepicker>
+              <quick-datepicker icon-class='fa fa-calendar' name='to' ng-model='to' class="input-style-large" placeholder="To"></quick-datepicker>
+          </div>
+    </div>
+    <div class="right-content">
+        <div ng-click="ctrPlaylist.toggleModal()" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Asset</div>
+    </div>
+
+    <div id="right-space-minor">
+        <ul as-sortable="sortableOptions" ng-model="allAssets" class="list">
+            <li ng-repeat="item in allAssets" as-sortable-item class="as-sortable-item">
+                <div as-sortable-item-handle class="as-sortable-item-handle" style="height:50px">
+                    <span data-ng-bind="item.name"></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
