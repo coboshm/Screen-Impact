@@ -138,8 +138,10 @@ app.get('/logout', users.logout);
 app.post('/upload', dashboard.upload);
 
 app.get('/apiWeb/assets', apiWeb.assets);
+app.get('/apiWeb/playLists', apiWeb.playLists);
 app.get('/apiWeb/userCuota', apiWeb.userCuota);
 app.post('/apiWeb/assetsDelete', apiWeb.assetsDelete);
+app.post('/apiWeb/new_playlist', apiWeb.newPlaylist);
 app.all('*',redirectAuthenticated, welcome.not_found);
 
 // Start Server w/ DB Connection

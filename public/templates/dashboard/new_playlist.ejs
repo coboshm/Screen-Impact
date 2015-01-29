@@ -57,12 +57,12 @@
     <div id="right-space-minor">
           <div class="margin_top_space_minor">
               <p class="float">Name</p>
-              <input type="text" class="input-style-large" placeholder="Playlist name">
+              <input type="text" ng-model="title" tabindex="1" class="input-style-large" placeholder="Playlist name">
           </div>
           <div class="margin_top_space">
               <p class="float">Schedule</p>
-              <quick-datepicker icon-class='fa fa-calendar' name='from' ng-model='from' class="input-style-large" placeholder="From" ></quick-datepicker>
-              <quick-datepicker icon-class='fa fa-calendar' name='to' ng-model='to' class="input-style-large" placeholder="To"></quick-datepicker>
+              <quick-datepicker icon-class='fa fa-calendar' tabindex="2" name='from' ng-model='from' class="input-style-large" placeholder="From" ></quick-datepicker>
+              <quick-datepicker icon-class='fa fa-calendar' tabindex="3" name='to' ng-model='to' class="input-style-large" placeholder="To"></quick-datepicker>
           </div>
     </div>
     <div class="right-content">
@@ -70,12 +70,42 @@
     </div>
 
     <div id="right-space-minor">
-        <ul as-sortable="sortableOptions" ng-model="allAssets" class="list">
-            <li ng-repeat="item in allAssets" as-sortable-item class="as-sortable-item">
-                <div as-sortable-item-handle class="as-sortable-item-handle" style="height:50px">
-                    <span data-ng-bind="item.name"></span>
+        <ul style="width:100%" as-sortable="sortableOptions" ng-model="assets" class="list" >
+            <li ng-repeat="asset in assets" as-sortable-item class="as-sortable-item assets">
+                <div class="bars-div" as-sortable-item-handle class="as-sortable-item-handle">
+                    <i class="fa fa-bars"></i>
                 </div>
+                <div style="display: inline-block;" class="thumbnail_field"><img src="{{asset.thumbnail}}" width="100px"/></div>
+                <div style="display: inline-block;" class="name">
+                    <p>Name</p>
+                    <div class="font-assets">{{asset.name | limitTo: 40}}</div>
+                </div>
+                <div style="display: inline-block;" class="small">
+                    <p>Type&nbsp;&nbsp;</p><i class="fa2 fa-film"></i> / <i class="fa2 fa-photo"></i>
+                    <div class="font-assets">{{asset.tipo}}</div>
+                </div>
+                <div  ng-if="asset.tipo.split('/')[0] !== 'image'" style="display: inline-block;" class="small">
+                    <p>Duration</p>
+                    <div class="font-assets">
+                        {{ctrPlaylist.durationTime(asset.duration)}}
+                    </div>
+                </div>
+                <div  ng-if="asset.tipo.split('/')[0] === 'image'" style="display: inline-block;" class="small">
+                    <p>Duration (seconds)</p>
+                    <div class="font-assets" ng-if="asset.tipo.split('/')[0] === 'image'">
+                        <input type="number" min="0" ng-model="asset.duration" class="input-style-minimum" >
+                    </div>
+                </div>
+                <div class="menu_preview" ng-click="ctrPlaylist.toggleModal2(asset.path, asset.tipo)"><i class="fa2 fa-play-circle"></i> Preview </div>
+                <div class="menu_delete" ng-click="ctrPlaylist.quitItem(asset)"><i class="fa2 fa-trash"></i> Quit </div>
+
             </li>
         </ul>
     </div>
+
+
+    <div class="right-content">
+        <div ng-click="ctrPlaylist.createPlaylist()" ng-disabled="!ctrPlaylist.isValid()" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;&nbsp;Create PlayList</div>
+    </div>
+
 </div>

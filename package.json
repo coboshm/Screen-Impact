@@ -14,10 +14,13 @@
     "express-mailer": "~0.2.0",
     "express-validator": "~0.3.2",
     "fluent-ffmpeg": "^2.0.0-rc3",
+    "fs": "0.0.2",
+    "log4js": "^0.6.22",
     "mongoose": "3.6.4",
     "node-notifier": "^4.0.3",
     "passport": "~0.1.16",
     "passport-local": "~0.1.6",
-    "quickthumb": "0.0.10"
+    "quickthumb": "0.0.10",
+    "winston": "^0.8.3"
   }
 }

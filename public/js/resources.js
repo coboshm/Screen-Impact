@@ -8,6 +8,10 @@ resources.factory("Assets", function($resource) {
     return $resource("/apiWeb/assets/:id");
 });
 
+resources.factory("PlayLists", function($resource) {
+    return $resource("/apiWeb/playLists/:id");
+});
+
 resources.factory("UserCuota", function($resource) {
     return $resource("/apiWeb/userCuota", {}, {'query': {method: 'GET', isArray: false}});
 });

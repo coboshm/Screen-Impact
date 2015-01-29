@@ -3,9 +3,9 @@
  */
 var playlistModule = angular.module('playlistModule', ['ngVideo']);
 
-playlistModule.controller('PlaylistController', ['$rootScope', '$scope', '$http',
+playlistModule.controller('PlaylistController', ['$rootScope', '$scope', '$http', 'PlayLists',
 
-    function($rootScope, $scope, $http) {
+    function($rootScope, $scope, $http, PlayLists) {
 
         var toggleModal = function(){
                 $scope.showModalNew = !$scope.showModalNew;
@@ -25,16 +25,25 @@ playlistModule.controller('PlaylistController', ['$rootScope', '$scope', '$http'
 
 
 
-playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$http', '$timeout', '$location', 'Assets',
+playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$http', '$timeout', '$location', '$window', 'Assets',
 
-    function($rootScope, $scope, $http, $timeout, $location, Assets) {
+    function($rootScope, $scope, $http, $timeout, $location, $window, Assets) {
 
         var toggleModal = function(){
             $scope.showModalNew = !$scope.showModalNew;
         };
 
         var addItem = function(asset) {
-            console.log(asset);
+            asset_new = angular.copy(asset);
+            if (asset_new.tipo.split('/')[0] === 'image') {
+                asset_new.duration = 5;
+            }
+            $scope.assets.push(asset_new);
+        }
+
+        var quitItem = function(asset) {
+            var index = $scope.assets.indexOf(asset);
+            $scope.assets.splice(index, 1);
         }
 
         var toggleModal2 = function(play, tipo){
@@ -51,6 +60,33 @@ playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$ht
                 $scope.interface.sources.add(path_large);
             }
         };
+
+        var createPlaylist = function() {
+            var playlist = {
+                title: $scope.title,
+                from: $scope.from,
+                to: $scope.to,
+                assets: $scope.assets
+            };
+            $http({
+                url: '/apiWeb/new_playlist',
+                method: 'POST',
+                data: playlist
+            }).success(function(res) {
+                $window.location.href="/playlist";
+            }).error(function(data, status, headers, config) {
+                console.log(data);
+                $scope.error = true;
+                $scope.serverErrorMessage = data;
+            });
+        }
+
+        var isValid = function() {
+            if ($scope.from >= $scope.to) return false;
+            if ($scope.title == '') return false;
+            if ($scope.assets.length == 0) return false;
+            return true;
+        }
 
 
         var DurationTime = function(secs) {
@@ -86,6 +122,7 @@ playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$ht
         $scope.allAssets = [];
         $scope.showModal = false;
         $scope.photoSelected = '';
+        $scope.title = '';
 
         $scope.allAssets = [];
 
@@ -104,7 +141,10 @@ playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$ht
             durationTime: DurationTime,
             toggleModal2: toggleModal2,
             toggleModal: toggleModal,
-            addItem: addItem
+            addItem: addItem,
+            createPlaylist: createPlaylist,
+            isValid: isValid,
+            quitItem: quitItem
         };
 
     }
@@ -188,18 +228,6 @@ playlistModule.directive('modalinit', function () {
                 });
             });
         }
-    };
-});
-
-
-playlistModule.directive('myDirective', function($compile) {
-    return {
-        restrict: 'E',
-        //scope: {
-        //  item: '='
-        //},
-        template: '<div><p data-ng-bind="item.name"></p></div>',
-        replace: true,
     };
 });
 

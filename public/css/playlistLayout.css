@@ -479,32 +479,15 @@ section.video section.full-screen {
     margin: 10px 0 30px;
 }
 
-.item {
-    width: 200px;
-    padding: 5px 10px;
-    margin: 5px 0;
-    border: 2px solid #444;
-    border-radius: 5px;
-    background-color: #EA8A8A;
-
-    font-size: 1.1em;
-    font-weight: bold;
-    text-align: center;
-    cursor: move;
-}
-
 
 .as-sortable-item,
 .as-sortable-placeholder {
-    width: 124px;
-    margin: 2px;
-    border: 1px solid #ff0000;
-    border-radius: 5px;
+    margin: 5px;
     list-style: none;
 }
 
 .as-sortable-placeholder {
-    border: 1px dotted #0000ff !important;
+    border: 1px dotted #dbdbdb !important;
 }
 
 #sortable-container {
@@ -516,4 +499,107 @@ section.video section.full-screen {
     border-radius: 5px;
 }
 
+li > div > p {
+    display: inline-block;
+    font-weight: bold;
+}
 
+
+
+li:not(:last-child).assets {
+    padding: 0.7em;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+
+li:last-child.assets {
+    padding: 0.7em;
+}
+
+div.thumbnail_field {
+    width: 10%;
+    vertical-align: middle;
+    margin-left: 20px;
+}
+
+div.name  {
+    width: 22%;
+    vertical-align: middle;
+    margin-left: 30px;
+}
+
+div.small {
+    width: 15%;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+div.menu_preview {
+    width: 11%;
+    color: #3d8b3d;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 22px;
+    margin-left: 10px;
+}
+
+
+div.menu_delete {
+    width: 10%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 22px;
+    color: #843534;
+    margin-left: 10px;
+}
+
+
+
+div.menu_preview:hover {
+    width: 11%;
+    color: #00BB00;
+    cursor: pointer;
+}
+
+div.menu_delete:hover {
+    cursor: pointer;
+    width: 10%;
+    color: #BB0000;
+}
+
+div.bars-div {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 24px;
+}
+
+.input-style-minimum {
+    width: 75px;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    display: inline-block;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #ccc;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #ccc;
+    opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #ccc;
+    opacity:  1;
+}
