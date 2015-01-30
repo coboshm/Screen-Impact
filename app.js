@@ -133,6 +133,8 @@ app.post('/register', redirectAuthenticated, users.userValidations, users.create
 app.get('/dashboard', ensureAuthenticated, dashboard.index);
 app.get('/assets', ensureAuthenticated, dashboard.assets);
 app.get('/playlist', ensureAuthenticated, dashboard.playlist);
+app.get('/screens', ensureAuthenticated, dashboard.screens);
+app.get('/audience', ensureAuthenticated, dashboard.statistics);
 app.get('/new_playlist', ensureAuthenticated, dashboard.newPlaylist);
 app.get('/logout', users.logout);
 app.post('/upload', dashboard.upload);
@@ -140,8 +142,10 @@ app.post('/upload', dashboard.upload);
 app.get('/apiWeb/assets', apiWeb.assets);
 app.get('/apiWeb/playLists', apiWeb.playLists);
 app.get('/apiWeb/userCuota', apiWeb.userCuota);
+app.post('/apiWeb/playlistDelete', apiWeb.playlistDelete);
 app.post('/apiWeb/assetsDelete', apiWeb.assetsDelete);
 app.post('/apiWeb/new_playlist', apiWeb.newPlaylist);
+app.post('/apiWeb/edit_playlist', apiWeb.editPlaylist);
 app.all('*',redirectAuthenticated, welcome.not_found);
 
 // Start Server w/ DB Connection

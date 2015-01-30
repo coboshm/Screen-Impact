@@ -7,18 +7,72 @@ playlistModule.controller('PlaylistController', ['$rootScope', '$scope', '$http'
 
     function($rootScope, $scope, $http, PlayLists) {
 
-        var toggleModal = function(){
-                $scope.showModalNew = !$scope.showModalNew;
+
+        $scope.playLists = [];
+        $scope.show_edit = false;
+        $scope.playLists = PlayLists.query(function(playlists) {});
+
+        var DeleteRow = function (id) {
+            $http({
+                url: '/apiWeb/playlistDelete',
+                method: 'POST',
+                data: {
+                    id: id
+                }
+            }).success(function(res) {
+                $scope.playLists = PlayLists.query(function(playlists) {});
+            }).error(function(data, status, headers, config) {});
         };
 
-        $scope.showModalNew = false;
+        var editRow = function (playlist) {
+            $scope.show_edit = true;
+            $rootScope.$emit(EVENTS.EDIT_PLAYLIST, playlist);
+        }
+
+        $rootScope.$on(EVENTS.BACK_EDIT_PLAYLIST, function(event) {
+            $scope.show_edit = false;
+            $scope.playLists = PlayLists.query(function(playlists) {});
+        });
+
+        var DurationTime = function(assets) {
+
+            var secs = 0;
+            for (i = 0; i < assets.length; i++) {
+                secs += assets[i].duration;
+            }
+
+            var hours = Math.floor(secs / (60 * 60));
+
+            var divisor_for_minutes = secs % (60 * 60);
+            var minutes = Math.floor(divisor_for_minutes / 60);
+
+            var divisor_for_seconds = divisor_for_minutes % 60;
+            var seconds = Math.ceil(divisor_for_seconds);
+
+            if (hours == 0) {
+                if (minutes == 0) {
+                    if (seconds == 0) {
+                        ret = '--';
+                    } else {
+                        ret = seconds + ' seconds';
+                    }
+                } else {
+                    ret = minutes + ':' + seconds + ' minutes';
+                }
+            } else {
+                ret = hours + ':' + minutes + ':' + seconds + ' minutes';
+            }
+            return ret;
+        }
 
         $scope.init = function(){};
 
         $scope.init();
 
         return {
-            toggleModal: toggleModal
+            deleteRow: DeleteRow,
+            durationTime: DurationTime,
+            editRow: editRow
         };
     }
 ]);
@@ -59,6 +113,31 @@ playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$ht
                 $scope.interface.options.setAutoplay(true);
                 $scope.interface.sources.add(path_large);
             }
+        };
+
+        var back = function() {
+            $rootScope.$emit(EVENTS.BACK_EDIT_PLAYLIST);
+        };
+
+        var editPlaylist = function() {
+            var playlist = {
+                id: $scope.id,
+                title: $scope.title,
+                from: $scope.from,
+                to: $scope.to,
+                assets: $scope.assets
+            };
+            $http({
+                url: '/apiWeb/edit_playlist',
+                method: 'POST',
+                data: playlist
+            }).success(function(res) {
+                $window.location.href="/playlist";
+            }).error(function(data, status, headers, config) {
+                console.log(data);
+                $scope.error = true;
+                $scope.serverErrorMessage = data;
+            });
         };
 
         var createPlaylist = function() {
@@ -114,10 +193,19 @@ playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$ht
             return ret;
         }
 
+        $rootScope.$on(EVENTS.EDIT_PLAYLIST, function(event, playlist) {
+            $scope.from = playlist.from;
+            $scope.to = playlist.to;
+            $scope.assets = playlist.assets;
+            $scope.title = playlist.title;
+            $scope.id = playlist._id;
+        });
+
         $scope.interface = {};
         $scope.showModalNew = false;
-        $scope.from = null
-        $scope.to = null
+        $scope.from = null;
+        $scope.to = null;
+        $scope.id = null;
         $scope.assets = [];
         $scope.allAssets = [];
         $scope.showModal = false;
@@ -144,7 +232,9 @@ playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$ht
             addItem: addItem,
             createPlaylist: createPlaylist,
             isValid: isValid,
-            quitItem: quitItem
+            quitItem: quitItem,
+            back: back,
+            editPlaylist: editPlaylist
         };
 
     }

@@ -7,5 +7,7 @@ var formApp = angular.module('formApp', ['FormModule']);
 
 
 var EVENTS = {
-    UPDATED_FILE: 'fileUpdated'
+    UPDATED_FILE: 'fileUpdated',
+    EDIT_PLAYLIST: 'editPlaylist',
+    BACK_EDIT_PLAYLIST: 'backEditPlaylist'
 };

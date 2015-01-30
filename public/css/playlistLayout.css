@@ -21,11 +21,19 @@ td.thumbnail_field {
 }
 
 td.name  {
-    width: 20%;
+    width: 15%;
 }
 
-td.small {
-    width: 15%;
+td.small_td {
+    width: 13%;
+}
+
+td.mini {
+    width: 9%;
+}
+
+td.dates-size {
+    width: 18%;
 }
 
 td.menu_preview {
@@ -33,8 +41,14 @@ td.menu_preview {
     color: #3d8b3d;
 }
 
+td.menu_edit {
+    width: 8%;
+    color: #204d74;
+    vertical-align: bottom;
+}
+
 td.menu_delete {
-    width: 15%;
+    vertical-align: bottom;
     color: #843534;
 }
 
@@ -44,9 +58,14 @@ td.menu_preview:hover {
     cursor: pointer;
 }
 
+td.menu_edit:hover {
+    color: #204dDA;
+    cursor: pointer;
+}
+
+
 td.menu_delete:hover {
     cursor: pointer;
-    width: 15%;
     color: #BB0000;
 }
 
