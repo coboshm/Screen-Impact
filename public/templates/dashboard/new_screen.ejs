@@ -1,0 +1,51 @@
+<% layout(layoutPathLogged) -%>
+<% stylesheet('/css/screensLayout.css') %>
+<% stylesheet('css/style_login.css') %>
+
+<div id="right-container"  ng-app="ScreensApp" ng-controller="NewScreenController as ctrScreen">
+    <div ng-show="step == 0">
+        <div id="bar-small">
+            <div class="space-content-new-screen">
+                <a href="/screens" class="btn btn-info"><i class="fa fa-angle-double-left"></i>&nbsp;&nbsp;Back</a>
+            </div>
+            <div style="display: inline-block">Choose your plataform -<span style="font-weight: bold"> Step 1/3</span> </div>
+            <div class="search-content">
+                <div ng-click="ctrScreen.next()" class="btn btn-success">Next&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="step == 1">
+        <div id="bar-small">
+            <div class="space-content-new-screen">
+                <div ng-click="ctrScreen.back()" class="btn btn-info"><i class="fa fa-angle-double-left"></i>&nbsp;&nbsp;Back</div>
+            </div>
+            <div style="display: inline-block">Burn your SD - <span style="font-weight: bold">Step 2/3</span> </div>
+            <div class="search-content">
+                <div ng-click="ctrScreen.next()" class="btn btn-success">Next&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="step == 2">
+        <div id="bar-small">
+            <div class="space-content-new-screen">
+                <div ng-click="ctrScreen.back()" class="btn btn-info"><i class="fa fa-angle-double-left"></i>&nbsp;&nbsp;Back</div>
+            </div>
+            <div style="display: inline-block">Insert your screen ID -<span style="font-weight: bold"> Step 3/3</span> </div>
+        </div>
+        <div class="create-code-screen">
+            <div class="content-login">
+                <div class="screen-container2">
+                    <div class="form-box">
+                        <form>
+                            <input name="screenCode"  type="text" placeholder="screen code">
+                            <button class="btn btn-info btn-block login" type="submit" >Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

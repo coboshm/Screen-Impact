@@ -1,7 +1,13 @@
 <% layout(layoutPathLogged) -%>
+<% stylesheet('/css/screensLayout.css') %>
 
 <div id="right-container">
-    <div id="right-space">
-        Welcome to your dashboard, <%= user.firstName %>.
+    <div id="bar-small">
+        <div class="space-content">
+            <a href="/new_screen" class="btn btn-success"><i class="fa fa-desktop"></i>&nbsp;&nbsp;Add Screen</a>
+        </div>
+        <div class="search-content">
+            <span class="bold_span">Search: </span> <input  ng-model="searchText" type="search" name="search_playlist" placeholder="...">
+        </div>
     </div>
 </div>

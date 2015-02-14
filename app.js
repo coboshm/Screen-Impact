@@ -4,9 +4,12 @@ var express = require('express')
   , mongoose = require('mongoose')
   , UserModel = require('./lib/models/user')
   , User = mongoose.model('User')
+  , ScreenModel = require('./lib/models/screen')
+  , Screen = mongoose.model('Screen')
   , welcome = require('./lib/controllers/welcome')
   , dashboard = require('./lib/controllers/dashboard')
   , apiWeb = require('./lib/controllers/apiWeb')
+  , api = require('./lib/controllers/api')
   , users = require('./lib/controllers/users')
   , http = require('http')
   , path = require('path')
@@ -26,13 +29,11 @@ app.set('views', __dirname + '/public/templates');
 app.set('view engine', 'ejs');
 app.use('/public/uploads/', qt.static(__dirname + '/public/uploads'));
 app.use(express.favicon());
-app.use(express.logger('dev'));
 app.use(express.bodyParser({ keepExtensions: true, uploadDir: __dirname + "/public/uploads" }));
 app.use(expressValidator);
-app.use(express.methodOverride());
-app.use(express.cookieParser('your secret here'));
-app.use(express.session());
-app.use(flash());
+app.use(express.cookieParser());
+app.use(express.bodyParser());
+app.use(express.cookieSession({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -41,8 +42,6 @@ app.use(passport.session());
 app.use(function(req, res, next){
   res.locals.userIsAuthenticated = req.isAuthenticated(); // check for user authentication
   res.locals.user = req.user; // make user available in all views
-  res.locals.errorMessages = req.flash('error'); // make error alert messages available in all views
-  res.locals.successMessages = req.flash('success'); // make success messages available in all views
   app.locals.layoutPath = "../shared/layout";
   app.locals.layoutPathLogged = "../shared/layout_logged";
   next();
@@ -87,7 +86,7 @@ if ('development' == app.get('env')) {
 
 // Authentication
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+  done(null, user._id);
 });
 
 passport.deserializeUser(function(id, done) {
@@ -112,7 +111,6 @@ passport.use(new LocalStrategy(
 
 function ensureAuthenticated(req, res, next){
   if (req.isAuthenticated()) return next();
-  req.flash('error', 'Please sign in to continue.');
   var postAuthDestination = req.url;
   res.redirect('/login?postAuthDestination='+postAuthDestination);
 }
@@ -136,6 +134,7 @@ app.get('/playlist', ensureAuthenticated, dashboard.playlist);
 app.get('/screens', ensureAuthenticated, dashboard.screens);
 app.get('/audience', ensureAuthenticated, dashboard.statistics);
 app.get('/new_playlist', ensureAuthenticated, dashboard.newPlaylist);
+app.get('/new_screen', ensureAuthenticated, dashboard.newScreen);
 app.get('/logout', users.logout);
 app.post('/upload', dashboard.upload);
 
@@ -146,6 +145,11 @@ app.post('/apiWeb/playlistDelete', apiWeb.playlistDelete);
 app.post('/apiWeb/assetsDelete', apiWeb.assetsDelete);
 app.post('/apiWeb/new_playlist', apiWeb.newPlaylist);
 app.post('/apiWeb/edit_playlist', apiWeb.editPlaylist);
+
+
+app.post('/api/new_screen', api.new_screen);
+
+
 app.all('*',redirectAuthenticated, welcome.not_found);
 
 // Start Server w/ DB Connection
