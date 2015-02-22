@@ -208,12 +208,12 @@ p.float {
 .screen-container2{
     position: relative;
     margin: auto;
-    padding: 25px 40px 40px;
+    padding: 45px 40px 40px;
     background: #fff;
     border: 1px solid #ccc;
     z-index: 1;
-    height: 170px;
-    width: 350px;
+    height: 250px;
+    width: 450px;
 }
 
 
@@ -239,4 +239,14 @@ p.float {
     -moz-transform: rotateZ(-2deg);
     -ms-transform: rotateZ(-2deg);
 
+}
+
+#output {
+    height: 45px;
+    position: relative;
+    margin: auto;
+    width: 450px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: #fff;
 }

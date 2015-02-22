@@ -140,11 +140,13 @@ app.post('/upload', dashboard.upload);
 
 app.get('/apiWeb/assets', apiWeb.assets);
 app.get('/apiWeb/playLists', apiWeb.playLists);
+app.get('/apiWeb/screens', apiWeb.screens);
 app.get('/apiWeb/userCuota', apiWeb.userCuota);
 app.post('/apiWeb/playlistDelete', apiWeb.playlistDelete);
 app.post('/apiWeb/assetsDelete', apiWeb.assetsDelete);
 app.post('/apiWeb/new_playlist', apiWeb.newPlaylist);
 app.post('/apiWeb/edit_playlist', apiWeb.editPlaylist);
+app.post('/apiWeb/add_screen', apiWeb.active_screen);
 
 
 app.post('/api/new_screen', api.new_screen);

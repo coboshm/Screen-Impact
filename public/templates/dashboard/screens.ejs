@@ -1,13 +1,19 @@
 <% layout(layoutPathLogged) -%>
 <% stylesheet('/css/screensLayout.css') %>
 
-<div id="right-container">
+<div id="right-container" ng-controller="ScreensController as ctrScreens">
     <div id="bar-small">
         <div class="space-content">
             <a href="/new_screen" class="btn btn-success"><i class="fa fa-desktop"></i>&nbsp;&nbsp;Add Screen</a>
         </div>
         <div class="search-content">
-            <span class="bold_span">Search: </span> <input  ng-model="searchText" type="search" name="search_playlist" placeholder="...">
+            <span class="bold_span">Search: </span> <input  ng-model="searchText" type="search" name="search_screen" placeholder="...">
         </div>
+    </div>
+    <div id="right-space-minor">
+        <table style="width:100%">
+            <tr ng-repeat="screen in screens | filter:searchText">
+            </tr>
+        </table>
     </div>
 </div>

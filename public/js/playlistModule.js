@@ -154,7 +154,6 @@ playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$ht
             }).success(function(res) {
                 $window.location.href="/playlist";
             }).error(function(data, status, headers, config) {
-                console.log(data);
                 $scope.error = true;
                 $scope.serverErrorMessage = data;
             });

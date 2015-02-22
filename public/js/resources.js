@@ -12,6 +12,10 @@ resources.factory("PlayLists", function($resource) {
     return $resource("/apiWeb/playLists/:id");
 });
 
+resources.factory("Screens", function($resource) {
+    return $resource("/apiWeb/screens/:id");
+});
+
 resources.factory("UserCuota", function($resource) {
     return $resource("/apiWeb/userCuota", {}, {'query': {method: 'GET', isArray: false}});
 });

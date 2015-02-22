@@ -34,11 +34,15 @@
         </div>
         <div class="create-code-screen">
             <div class="content-login">
+                <div id="output" ng-show="error" class="alert alert-danger">
+                    {{serverErrorMessage}}
+                </div>
                 <div class="screen-container2">
                     <div class="form-box">
-                        <form>
-                            <input name="screenCode"  type="text" placeholder="screen code">
-                            <button class="btn btn-info btn-block login" type="submit" >Add</button>
+                        <form name="form">
+                            <input type="text" placeholder="Name of the Screen (place, description...)" ng-model="title" name="title" required>
+                            <input name="screenCode" ng-model="code"  type="text" placeholder="screen code" required>
+                            <button class="btn btn-info btn-block login" ng-disabled="!form.$valid" ng-click="ctrScreen.createScreen()" type="submit" >Add</button>
                         </form>
                     </div>
                 </div>
