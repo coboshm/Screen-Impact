@@ -1,0 +1,41 @@
+<% layout(layoutPathLogged) -%>
+<% stylesheet('/css/groupsLayout.css') %>
+
+<div id="right-container" ng-app="ScreensApp" ng-controller="GroupsController as ctrGroups">
+    <div id="bar-small">
+        <div class="space-content">
+            <a href="/new_group" class="btn btn-success"><i class="fa fa-group"></i>&nbsp;&nbsp;Create Group</a>
+        </div>
+        <div class="search-content">
+            <span class="bold_span">Search: </span> <input  ng-model="searchText" type="search" name="search_screen" placeholder="...">
+        </div>
+    </div>
+    <div id="right-space-minor">
+        <table style="width:100%">
+            <tr ng-repeat="group in groups | filter:searchText" ng-if="$first">
+                <td class="date">
+                    <p>Name</p>
+                    <div class="font-assets">{{group.title | limitTo: 40}}</div>
+                </td>
+                <td class="date">
+                    <p>Num Screens</p>
+                    <div class="font-assets">{{group.screens.length}}</div>
+                </td>
+                <td class="menu_edit" ng-click="ctrGroups.editRow2(playlist)"><i class="fa2 fa-cogs"></i> Edit </td>
+                <td class="menu_delete"></td>
+            </tr>
+            <tr ng-repeat="group in groups | filter:searchText" ng-if="!$first">
+                <td class="date">
+                    <p>Name</p>
+                    <div class="font-assets">{{group.title | limitTo: 40}}</div>
+                </td>
+                <td class="date">
+                    <p>Num Screens</p>
+                    <div class="font-assets">{{group.screens.length}}</div>
+                </td>
+                <td class="menu_edit" ng-click="ctrGroups.editRow(playlist)"><i class="fa2 fa-cogs"></i> Edit </td>
+                <td class="menu_delete" ng-click="ctrGroups.deleteRow(playlist._id)"><i class="fa2 fa-trash-o"></i> Delete </td>
+            </tr>
+        </table>
+    </div>
+</div>

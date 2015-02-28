@@ -1,7 +1,7 @@
 <% layout(layoutPathLogged) -%>
 <% stylesheet('/css/screensLayout.css') %>
 
-<div id="right-container" ng-controller="ScreensController as ctrScreens">
+<div id="right-container"  ng-app="ScreensApp" ng-controller="ScreensController as ctrScreens">
     <div id="bar-small">
         <div class="space-content">
             <a href="/new_screen" class="btn btn-success"><i class="fa fa-desktop"></i>&nbsp;&nbsp;Add Screen</a>
@@ -13,6 +13,23 @@
     <div id="right-space-minor">
         <table style="width:100%">
             <tr ng-repeat="screen in screens | filter:searchText">
+                <td class="name">
+                    <p>Name</p>
+                    <div class="font-assets">{{screen.title}}</div>
+                </td>
+                <td class="date">
+                    <i class="fa2 fa-group"></i><p>&nbsp;&nbsp;Group</p>
+                    <div class="font-assets">{{ctrScreens.getGroup(screen)}}</div>
+                </td>
+                <td class="date">
+                    <i class="fa2 fa-calendar"></i><p>&nbsp;&nbsp;Last Connection</p>
+                    <div class="font-assets">{{screen.last_connection | date:'medium'}}</div>
+                </td>
+                <td class="date">
+                    <i class="fa2 fa-wifi"></i><p>&nbsp;&nbsp;Last IP</p>
+                    <div class="font-assets">192.168.1.0</div>
+                </td>
+                <td class="menu_delete" ng-click="ctrScreens.deleteRow(screen)"><i class="fa2 fa-trash-o"></i> Delete </td>
             </tr>
         </table>
     </div>

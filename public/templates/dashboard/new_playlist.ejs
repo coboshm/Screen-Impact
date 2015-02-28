@@ -3,10 +3,9 @@
 <% stylesheet('/css/playlistLayout.css') %>
 <% stylesheet('/css/ng-quick-date.css') %>
 <% stylesheet('/css/ng-quick-date-default-theme.css') %>
+<% stylesheet('/css/chosen.css') %>
 
 <div id="right-container"  ng-app="ScreensApp" ng-controller="NewPlaylistController as ctrPlaylist">
-
-
     <modalplaylist  title="Photo Modal" visible="showModalNew">
         <div class="right-content">
             <span class="bold_span">Search: </span> <input  ng-model="searchText" type="search" name="search_asset" placeholder="...">
@@ -59,7 +58,13 @@
               <p class="float">Name</p>
               <input type="text" ng-model="title" tabindex="1" class="input-style-large" placeholder="Playlist name">
           </div>
-          <div class="margin_top_space">
+
+          <div class="margin_top_space_minor">
+              <p class="float">Groups</p>
+              <select class="input-style-large-3" multiple chosen ng-model="groups" ng-options="opt as opt.title for opt in allGroups">
+              </select>
+           </div>
+          <div class="margin_top_space_minor">
               <p class="float">Schedule</p>
               <quick-datepicker icon-class='fa fa-calendar' tabindex="2" name='from' ng-model='from' class="input-style-large" placeholder="From" ></quick-datepicker>
               <quick-datepicker icon-class='fa fa-calendar' tabindex="3" name='to' ng-model='to' class="input-style-large" placeholder="To"></quick-datepicker>

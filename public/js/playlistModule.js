@@ -29,6 +29,11 @@ playlistModule.controller('PlaylistController', ['$rootScope', '$scope', '$http'
             $rootScope.$emit(EVENTS.EDIT_PLAYLIST, playlist);
         }
 
+        var editRow2 = function (playlist) {
+            $scope.show_edit = true;
+            $rootScope.$emit(EVENTS.EDIT_PLAYLIST2, playlist);
+        }
+
         $rootScope.$on(EVENTS.BACK_EDIT_PLAYLIST, function(event) {
             $scope.show_edit = false;
             $scope.playLists = PlayLists.query(function(playlists) {});
@@ -72,19 +77,21 @@ playlistModule.controller('PlaylistController', ['$rootScope', '$scope', '$http'
         return {
             deleteRow: DeleteRow,
             durationTime: DurationTime,
-            editRow: editRow
+            editRow: editRow,
+            editRow2: editRow2
         };
     }
 ]);
 
 
 
-playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$http', '$timeout', '$location', '$window', 'Assets',
+playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$http', '$timeout', '$location', '$window', 'Assets', 'Groups',
 
-    function($rootScope, $scope, $http, $timeout, $location, $window, Assets) {
+    function($rootScope, $scope, $http, $timeout, $location, $window, Assets, Groups) {
 
         var toggleModal = function(){
             $scope.showModalNew = !$scope.showModalNew;
+            console.log($scope.groups);
         };
 
         var addItem = function(asset) {
@@ -160,9 +167,10 @@ playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$ht
         }
 
         var isValid = function() {
-            if ($scope.from >= $scope.to) return false;
+            if (($scope.from >= $scope.to) && !$scope.edit_all) return false;
             if ($scope.title == '') return false;
-            if ($scope.assets.length == 0) return false;
+            if ($scope.assets.length == 0 && !$scope.edit_all) return false;
+
             return true;
         }
 
@@ -198,6 +206,16 @@ playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$ht
             $scope.assets = playlist.assets;
             $scope.title = playlist.title;
             $scope.id = playlist._id;
+            $scope.edit_all = false;
+        });
+
+        $rootScope.$on(EVENTS.EDIT_PLAYLIST2, function(event, playlist) {
+            $scope.from = playlist.from;
+            $scope.to = playlist.to;
+            $scope.assets = playlist.assets;
+            $scope.title = playlist.title;
+            $scope.id = playlist._id;
+            $scope.edit_all = true;
         });
 
         $scope.interface = {};
@@ -218,6 +236,7 @@ playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$ht
         };
 
         $scope.allAssets = Assets.query(function(assets) {});
+        $scope.allGroups = Groups.query(function(groups) {});
 
         $scope.init = function(){
         };

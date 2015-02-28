@@ -10,12 +10,12 @@ assetsModule.controller('AssetsController', ['$rootScope', '$scope', '$http', '$
         $scope.interface = {};
 
 
-        var DeleteRow = function (id) {
+        var DeleteRow = function (asset) {
             $http({
                 url: '/apiWeb/assetsDelete',
                 method: 'POST',
                 data: {
-                    id: id
+                    asset: asset
                 }
             }).success(function(res) {
                 $scope.assets = Assets.query(function(assets) {});

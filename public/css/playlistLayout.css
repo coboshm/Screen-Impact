@@ -167,6 +167,9 @@ p.float {
     display: inline-block;
 }
 
+.input-style-large-3 {
+    width: 80%;
+}
 
 .input-style-large {
     width: 250px;

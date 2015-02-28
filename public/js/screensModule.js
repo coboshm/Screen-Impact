@@ -3,16 +3,36 @@
  */
 var screensModule = angular.module('screensModule', []);
 
-screensModule.controller('ScreensController', ['$rootScope', '$scope', '$http', 'Screens',
+screensModule.controller('ScreensController', ['$rootScope', '$scope', '$http', 'Screens', 'Groups',
 
-    function($rootScope, $scope, $http, Screens) {
+    function($rootScope, $scope, $http, Screens, Groups) {
 
         $scope.screens = Screens.query(function(screens) {});
+        $scope.groups = Groups.query(function(groups) {})
         $scope.init = function(){};
-
         $scope.init();
 
+        var getGroup = function(screen) {
+            var x = 0;
+            for (var i = 1; i < $scope.groups.length; i++) {
+                var screens = $scope.groups[i].screens;
+                for (var j = 0; j < screens.length; j++ ) {
+                    if (screen.title === screens[j].title && screen.createdAt === screens[j].createdAt) {
+                        if (x !== 0) {
+                            ret += ', ' + user.groups[i].title;
+                        } else {
+                            ret += user.groups[i].title;
+                        }
+                        x++;
+                    }
+                }
+            }
+            if (x == 0) return $scope.groups[0].title;
+            else return ret;
+        };
+
         return {
+            getGroup: getGroup
         };
     }
 ]);

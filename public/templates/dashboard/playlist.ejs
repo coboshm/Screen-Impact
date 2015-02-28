@@ -3,6 +3,7 @@
 <% stylesheet('/css/playlistLayout.css') %>
 <% stylesheet('/css/ng-quick-date.css') %>
 <% stylesheet('/css/ng-quick-date-default-theme.css') %>
+<% stylesheet('/css/chosen.css') %>
 
 <div ng-app="ScreensApp" ng-controller="PlaylistController as ctrPlaylist">
     <div id="right-container"   ng-show="!show_edit">
@@ -16,7 +17,31 @@
         </div>
         <div id="right-space-minor">
             <table style="width:100%">
-                <tr ng-repeat="playlist in playLists | filter:searchText">
+                <tr ng-repeat="playlist in playLists | filter:searchText" ng-if="$first">
+                    <td class="name">
+                        <p>Name</p>
+                        <div class="font-assets">{{playlist.title | limitTo: 40}}</div>
+                    </td>
+                    <td class="date-size">
+                        <p>&nbsp;&nbsp;</p>
+                        <div class="font-assets"></div>
+                    </td>
+                    <td class="date-size">
+                       <p>&nbsp;&nbsp;</p>
+                        <div class="font-assets"></div>
+                    </td>
+                    <td class="mini">
+                        <p>items</p>
+                        <div class="font-assets">{{playlist.assets.length}}</div>
+                    </td>
+                    <td class="small_td">
+                        <p>Duration</p>
+                        <div class="font-assets">{{ctrPlaylist.durationTime(playlist.assets)}}</div>
+                    </td>
+                    <td class="menu_edit" ng-click="ctrPlaylist.editRow2(playlist)"><i class="fa2 fa-cogs"></i> Edit </td>
+                    <td class="menu_delete"></td>
+                </tr>
+                <tr ng-repeat="playlist in playLists | filter:searchText" ng-if="!$first">
                     <td class="name">
                         <p>Name</p>
                         <div class="font-assets">{{playlist.title | limitTo: 40}}</div>
@@ -100,9 +125,9 @@
             <div id="right-space-minor">
                 <div class="margin_top_space_minor">
                     <p class="float">Name</p>
-                    <input type="text" ng-model="title" tabindex="1" class="input-style-large" placeholder="Playlist name">
+                    <input type="text" ng-model="title"  ng-disabled="edit_all" tabindex="1" class="input-style-large" placeholder="Playlist name">
                 </div>
-                <div class="margin_top_space">
+                <div class="margin_top_space" ng-show="!edit_all">
                     <p class="float">Schedule</p>
                     <quick-datepicker icon-class='fa fa-calendar' tabindex="2" name='from' ng-model='from' class="input-style-large" placeholder="From" ></quick-datepicker>
                     <quick-datepicker icon-class='fa fa-calendar' tabindex="3" name='to' ng-model='to' class="input-style-large" placeholder="To"></quick-datepicker>
