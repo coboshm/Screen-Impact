@@ -7,21 +7,36 @@ screensModule.controller('ScreensController', ['$rootScope', '$scope', '$http', 
 
     function($rootScope, $scope, $http, Screens, Groups) {
 
-        $scope.screens = Screens.query(function(screens) {});
-        $scope.groups = Groups.query(function(groups) {})
-        $scope.init = function(){};
-        $scope.init();
+        $scope.init = function(){
+            $scope.screens = Screens.query(function(screens) {});
+            $scope.groups = Groups.query(function(groups) {});
+        };
+
+        var DeleteRow = function (code, id) {
+            $http({
+                url: '/apiWeb/screenDelete',
+                method: 'POST',
+                data: {
+                    code: code,
+                    id: id
+                }
+            }).success(function(res) {
+                $scope.screens = Screens.query(function(playlists) {});
+                $scope.groups = Groups.query(function(groups) {})
+            }).error(function(data, status, headers, config) {});
+        };
 
         var getGroup = function(screen) {
             var x = 0;
+            var ret = '';
             for (var i = 1; i < $scope.groups.length; i++) {
                 var screens = $scope.groups[i].screens;
                 for (var j = 0; j < screens.length; j++ ) {
-                    if (screen.title === screens[j].title && screen.createdAt === screens[j].createdAt) {
+                    if (screen.title === screens[j].title && screen.addedAt === screens[j].addedAt) {
                         if (x !== 0) {
-                            ret += ', ' + user.groups[i].title;
+                            ret += ', ' + $scope.groups[i].title;
                         } else {
-                            ret += user.groups[i].title;
+                            ret += $scope.groups[i].title;
                         }
                         x++;
                     }
@@ -31,8 +46,12 @@ screensModule.controller('ScreensController', ['$rootScope', '$scope', '$http', 
             else return ret;
         };
 
+
+        $scope.init();
+
         return {
-            getGroup: getGroup
+            getGroup: getGroup,
+            deleteRow: DeleteRow
         };
     }
 ]);

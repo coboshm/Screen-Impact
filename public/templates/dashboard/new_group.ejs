@@ -1,0 +1,31 @@
+<% layout(layoutPathLogged) -%>
+<% stylesheet('/css/groupLayout.css') %>
+<% stylesheet('/css/chosen.css') %>
+
+<div id="right-container"  ng-app="ScreensApp" ng-controller="NewGroupController as ctrGroup">
+
+
+    <div id="bar-small">
+        <div class="space-content">
+            <span style="font-weight: bold">Create Group</span>
+        </div>
+    </div>
+    <div id="right-space-minor">
+          <div class="margin_top_space_minor">
+              <p class="float">Name</p>
+              <input type="text" ng-model="title" tabindex="1" class="input-style-large" placeholder="Group name">
+          </div>
+
+          <div class="margin_top_space_minor">
+              <p class="float">Screens of this group:</p>
+              <select class="input-style-large-3" multiple chosen ng-model="screens" ng-options="opt as opt.title for opt in allScreens track by opt._id">
+              </select>
+           </div>
+    </div>
+
+
+    <div class="right-content">
+        <div ng-click="ctrGroup.createGroup()" ng-disabled="!ctrGroup.isValid()" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;&nbsp;Create Group</div>
+    </div>
+
+</div>

@@ -135,6 +135,7 @@ app.get('/screens', ensureAuthenticated, dashboard.screens);
 app.get('/groups', ensureAuthenticated, dashboard.groups);
 app.get('/audience', ensureAuthenticated, dashboard.statistics);
 app.get('/new_playlist', ensureAuthenticated, dashboard.newPlaylist);
+app.get('/new_group', ensureAuthenticated, dashboard.newGroup);
 app.get('/new_screen', ensureAuthenticated, dashboard.newScreen);
 app.get('/logout', users.logout);
 app.post('/upload', dashboard.upload);
@@ -145,9 +146,13 @@ app.get('/apiWeb/screens', apiWeb.screens);
 app.get('/apiWeb/groups', apiWeb.groups);
 app.get('/apiWeb/userCuota', apiWeb.userCuota);
 app.post('/apiWeb/playlistDelete', apiWeb.playlistDelete);
+app.post('/apiWeb/groupDelete', apiWeb.groupDelete);
+app.post('/apiWeb/screenDelete', apiWeb.screenDelete);
 app.post('/apiWeb/assetsDelete', apiWeb.assetsDelete);
 app.post('/apiWeb/new_playlist', apiWeb.newPlaylist);
+app.post('/apiWeb/new_group', apiWeb.newGroup);
 app.post('/apiWeb/edit_playlist', apiWeb.editPlaylist);
+app.post('/apiWeb/edit_group', apiWeb.editGroup);
 app.post('/apiWeb/add_screen', apiWeb.active_screen);
 
 

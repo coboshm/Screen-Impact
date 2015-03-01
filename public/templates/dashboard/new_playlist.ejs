@@ -61,7 +61,7 @@
 
           <div class="margin_top_space_minor">
               <p class="float">Groups</p>
-              <select class="input-style-large-3" multiple chosen ng-model="groups" ng-options="opt as opt.title for opt in allGroups">
+              <select class="input-style-large-3" multiple chosen ng-model="groups" ng-options="opt as opt.title for opt in allGroups track by opt._id">
               </select>
            </div>
           <div class="margin_top_space_minor">

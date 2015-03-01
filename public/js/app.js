@@ -10,5 +10,7 @@ var EVENTS = {
     UPDATED_FILE: 'fileUpdated',
     EDIT_PLAYLIST: 'editPlaylist',
     EDIT_PLAYLIST2: 'editPlaylist2',
-    BACK_EDIT_PLAYLIST: 'backEditPlaylist'
+    BACK_EDIT_PLAYLIST: 'backEditPlaylist',
+    BACK_EDIT_GROUP: 'backEditGroup',
+    EDIT_GROUP: 'editGroup'
 };

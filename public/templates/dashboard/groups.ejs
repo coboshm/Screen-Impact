@@ -1,41 +1,72 @@
 <% layout(layoutPathLogged) -%>
-<% stylesheet('/css/groupsLayout.css') %>
+<% stylesheet('/css/groupLayout.css') %>
+<% stylesheet('/css/chosen.css') %>
 
-<div id="right-container" ng-app="ScreensApp" ng-controller="GroupsController as ctrGroups">
-    <div id="bar-small">
-        <div class="space-content">
-            <a href="/new_group" class="btn btn-success"><i class="fa fa-group"></i>&nbsp;&nbsp;Create Group</a>
+<div ng-app="ScreensApp" ng-controller="GroupsController as ctrGroups">
+    <div id="right-container"  ng-show="!show_edit">
+        <div id="bar-small">
+            <div class="space-content">
+                <a href="/new_group" class="btn btn-success"><i class="fa fa-group"></i>&nbsp;&nbsp;Create Group</a>
+            </div>
+            <div class="search-content">
+                <span class="bold_span">Search: </span> <input  ng-model="searchText" type="search" name="search_screen" placeholder="...">
+            </div>
         </div>
-        <div class="search-content">
-            <span class="bold_span">Search: </span> <input  ng-model="searchText" type="search" name="search_screen" placeholder="...">
+        <div id="right-space-minor">
+            <table style="width:100%">
+                <tr ng-repeat="group in groups | filter:searchText" ng-if="$first">
+                    <td class="date">
+                        <p>Name</p>
+                        <div class="font-assets">{{group.title | limitTo: 40}}</div>
+                    </td>
+                    <td class="date">
+                        <p>Num Screens</p>
+                        <div class="font-assets">{{group.screens.length}}</div>
+                    </td>
+                    <td class="menu_delete"></td>
+                    <td class="menu_delete"></td>
+                </tr>
+                <tr ng-repeat="group in groups | filter:searchText" ng-if="!$first">
+                    <td class="date">
+                        <p>Name</p>
+                        <div class="font-assets">{{group.title | limitTo: 40}}</div>
+                    </td>
+                    <td class="date">
+                        <p>Num Screens</p>
+                        <div class="font-assets">{{group.screens.length}}</div>
+                    </td>
+                    <td class="menu_edit" ng-click="ctrGroups.editRow(group)"><i class="fa2 fa-cogs"></i> Edit </td>
+                    <td class="menu_delete" ng-click="ctrGroups.deleteRow(group._id)"><i class="fa2 fa-trash-o"></i> Delete </td>
+                </tr>
+            </table>
         </div>
     </div>
-    <div id="right-space-minor">
-        <table style="width:100%">
-            <tr ng-repeat="group in groups | filter:searchText" ng-if="$first">
-                <td class="date">
-                    <p>Name</p>
-                    <div class="font-assets">{{group.title | limitTo: 40}}</div>
-                </td>
-                <td class="date">
-                    <p>Num Screens</p>
-                    <div class="font-assets">{{group.screens.length}}</div>
-                </td>
-                <td class="menu_edit" ng-click="ctrGroups.editRow2(playlist)"><i class="fa2 fa-cogs"></i> Edit </td>
-                <td class="menu_delete"></td>
-            </tr>
-            <tr ng-repeat="group in groups | filter:searchText" ng-if="!$first">
-                <td class="date">
-                    <p>Name</p>
-                    <div class="font-assets">{{group.title | limitTo: 40}}</div>
-                </td>
-                <td class="date">
-                    <p>Num Screens</p>
-                    <div class="font-assets">{{group.screens.length}}</div>
-                </td>
-                <td class="menu_edit" ng-click="ctrGroups.editRow(playlist)"><i class="fa2 fa-cogs"></i> Edit </td>
-                <td class="menu_delete" ng-click="ctrGroups.deleteRow(playlist._id)"><i class="fa2 fa-trash-o"></i> Delete </td>
-            </tr>
-        </table>
+    <!-- EDIT -->
+    <div ng-show="show_edit">
+        <div id="right-container" ng-controller="NewGroupController as ctrGroupEdit">
+            <div id="bar-small">
+                <div class="space-content">
+                    <div ng-click="ctrGroupEdit.back()" class="btn btn-info"><i class="fa fa-angle-double-left"></i>&nbsp;&nbsp;Back</div>
+                    <span style="font-weight: bold; padding-left: 20px; vertical-align: middle; ">Edit Group</span>
+                </div>
+            </div>
+            <div id="right-space-minor">
+                <div class="margin_top_space_minor">
+                    <p class="float">Name</p>
+                    <input type="text" ng-model="title"  ng-disabled="edit_all" tabindex="1" class="input-style-large" placeholder="Group name">
+                </div>
+                <div class="margin_top_space_minor">
+                    <p class="float">Screens of this group:</p>
+                    <select class="input-style-large-3"  multiple chosen ng-model="screens" ng-options="opt as opt.title for opt in allScreens track by opt._id">
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="right-content">
+                <div ng-click="ctrGroupEdit.editGroup()" ng-disabled="!ctrGroupEdit.isValid()" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;&nbsp;Confirm Changes</div>
+            </div>
+
+        </div>
     </div>
 </div>

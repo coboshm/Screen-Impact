@@ -91,7 +91,6 @@ playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$ht
 
         var toggleModal = function(){
             $scope.showModalNew = !$scope.showModalNew;
-            console.log($scope.groups);
         };
 
         var addItem = function(asset) {
@@ -132,7 +131,8 @@ playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$ht
                 title: $scope.title,
                 from: $scope.from,
                 to: $scope.to,
-                assets: $scope.assets
+                assets: $scope.assets,
+                groups: $scope.groups
             };
             $http({
                 url: '/apiWeb/edit_playlist',
@@ -152,7 +152,8 @@ playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$ht
                 title: $scope.title,
                 from: $scope.from,
                 to: $scope.to,
-                assets: $scope.assets
+                assets: $scope.assets,
+                groups: $scope.groups
             };
             $http({
                 url: '/apiWeb/new_playlist',
@@ -207,6 +208,8 @@ playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$ht
             $scope.title = playlist.title;
             $scope.id = playlist._id;
             $scope.edit_all = false;
+            $scope.allGroups = Groups.query(function(groups) {});
+            $scope.groups = playlist.groups;
         });
 
         $rootScope.$on(EVENTS.EDIT_PLAYLIST2, function(event, playlist) {
@@ -216,6 +219,8 @@ playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$ht
             $scope.title = playlist.title;
             $scope.id = playlist._id;
             $scope.edit_all = true;
+            $scope.groups = playlist.groups;
+            $scope.allGroups = Groups.query(function(groups) {});
         });
 
         $scope.interface = {};

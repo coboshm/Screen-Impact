@@ -15,7 +15,7 @@
             <tr ng-repeat="screen in screens | filter:searchText">
                 <td class="name">
                     <p>Name</p>
-                    <div class="font-assets">{{screen.title}}</div>
+                    <div class="font-assets">{{screen.title |  limitTo: 30}}</div>
                 </td>
                 <td class="date">
                     <i class="fa2 fa-group"></i><p>&nbsp;&nbsp;Group</p>
@@ -29,7 +29,7 @@
                     <i class="fa2 fa-wifi"></i><p>&nbsp;&nbsp;Last IP</p>
                     <div class="font-assets">192.168.1.0</div>
                 </td>
-                <td class="menu_delete" ng-click="ctrScreens.deleteRow(screen)"><i class="fa2 fa-trash-o"></i> Delete </td>
+                <td class="menu_delete" ng-click="ctrScreens.deleteRow(screen.code, screen._id)"><i class="fa2 fa-trash-o"></i> Delete </td>
             </tr>
         </table>
     </div>
