@@ -61,13 +61,13 @@
 
           <div class="margin_top_space_minor">
               <p class="float">Groups</p>
-              <select class="input-style-large-3" multiple chosen ng-model="groups" ng-options="opt as opt.title for opt in allGroups track by opt._id">
+              <select class="input-style-large-3" tabindex="2" multiple chosen ng-model="groups" ng-options="opt as opt.title for opt in allGroups track by opt._id">
               </select>
            </div>
           <div class="margin_top_space_minor">
               <p class="float">Schedule</p>
-              <quick-datepicker icon-class='fa fa-calendar' tabindex="2" name='from' ng-model='from' class="input-style-large" placeholder="From" ></quick-datepicker>
-              <quick-datepicker icon-class='fa fa-calendar' tabindex="3" name='to' ng-model='to' class="input-style-large" placeholder="To"></quick-datepicker>
+              <quick-datepicker icon-class='fa fa-calendar' tabindex="3" name='from' ng-model='from' class="input-style-large" placeholder="From" ></quick-datepicker>
+              <quick-datepicker icon-class='fa fa-calendar' tabindex="4" name='to' ng-model='to' class="input-style-large" placeholder="To"></quick-datepicker>
           </div>
     </div>
     <div class="right-content">
@@ -110,7 +110,7 @@
 
 
     <div class="right-content">
-        <div ng-click="ctrPlaylist.createPlaylist()" ng-disabled="!ctrPlaylist.isValid()" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;&nbsp;Create PlayList</div>
+        <div ng-click="ctrPlaylist.createPlaylist()" tabindex="5" ng-disabled="!ctrPlaylist.isValid()" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;&nbsp;Create PlayList</div>
     </div>
 
 </div>

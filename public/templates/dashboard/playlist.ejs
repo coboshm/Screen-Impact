@@ -129,13 +129,13 @@
                 </div>
                 <div class="margin_top_space_minor" ng-show="!edit_all">
                     <p class="float">Groups</p>
-                    <select class="input-style-large-3"  multiple chosen ng-model="groups" ng-options="opt as opt.title for opt in allGroups track by opt._id">
+                    <select class="input-style-large-3" tabindex="2"  multiple chosen ng-model="groups" ng-options="opt as opt.title for opt in allGroups track by opt._id">
                     </select>
                 </div>
                 <div class="margin_top_space_minor" ng-show="!edit_all">
                     <p class="float">Schedule</p>
-                    <quick-datepicker icon-class='fa fa-calendar' tabindex="2" name='from' ng-model='from' class="input-style-large" placeholder="From" ></quick-datepicker>
-                    <quick-datepicker icon-class='fa fa-calendar' tabindex="3" name='to' ng-model='to' class="input-style-large" placeholder="To"></quick-datepicker>
+                    <quick-datepicker icon-class='fa fa-calendar' tabindex="3" name='from' ng-model='from' class="input-style-large" placeholder="From" ></quick-datepicker>
+                    <quick-datepicker icon-class='fa fa-calendar' tabindex="4" name='to' ng-model='to' class="input-style-large" placeholder="To"></quick-datepicker>
                 </div>
             </div>
             <div class="right-content">
@@ -178,7 +178,7 @@
 
 
             <div class="right-content">
-                <div ng-click="ctrPlaylistEdit.editPlaylist()" ng-disabled="!ctrPlaylistEdit.isValid()" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;&nbsp;Confirm Changes</div>
+                <div ng-click="ctrPlaylistEdit.editPlaylist()" tabindex="5" ng-disabled="!ctrPlaylistEdit.isValid()" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;&nbsp;Confirm Changes</div>
             </div>
 
         </div>
