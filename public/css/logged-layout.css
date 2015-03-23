@@ -41,7 +41,7 @@ header {
 }
 
 #left-space {
-    width: 222px;
+    width: 17%;
     border: 1px solid #d8d8d8;
     background-color: #FEFEFE;
     border-bottom-width: 2px;
@@ -55,10 +55,10 @@ header {
 
 #right-container {
     border-bottom-width: 2px;
-    width: 80%;
+    width: 82%;
     display: inline-block;
     float: left;
-    margin-left: 235px;
+    margin-left: 18%;
     margin-top: 73px;
 }
 

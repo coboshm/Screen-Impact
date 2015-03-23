@@ -19,16 +19,14 @@ body {
 .text-vertical-left {
     display: inline-block;
     vertical-align: top;
-    margin-left: 8em;
-    margin-top: 8em;
+    margin-left: 12%;
+    margin-top: 11%;
 }
 
 .content-login {
-    border-radius: 40px;
-    min-height: 350px;
-    margin: 9em 6em 6em 8em;
-    min-width: 450px;
-    max-width: 450px;
+    min-height: 45%;
+    margin: 10% 6% 6% 10%;
+    min-width: 30%;
     display: inline-block;
 }
 

@@ -3,24 +3,25 @@
 <% script('/js/formModule.js') %>
 
 <div id="top" class="header" ng-app="formApp">
-    <div class="text-vertical-left">
-        <img src="/img/logo.png" alt="Screen Digital Signage Measure Logo" />
-    </div>
-    <div class="content-login">
-        <div class="login-container">
-            <h3>User Area:</h3>
-            <% if (error) { %>
-            <div id="output" class="alert alert-danger">
-                <%= error_msg %>
-            </div>
-            <% } %>
-            <div class="form-box">
-                <form action="/login" method="post" ng-controller="FormCtrl">
-                    <input name="username" ng-model="model.username" type="text" placeholder="Username">
-                    <input type="password" ng-model="model.password" placeholder="Password" name="password">
-                    <button class="btn btn-info btn-block login" type="submit" ng-disabled="!isFormValid()">Login</button>
-                </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-md-offset-4">
+                <% if (error) { %>
+                <div id="output" class="alert alert-danger">
+                    <%= error_msg %>
+                </div>
+                <% } %>
+                <div class="account-wall">
+                    <img class="profile-img" src="/img/logo_only.png" alt="Screen Digital Signage Measure Logo">
+                    <form class="form-signin" action="/login" method="post" ng-controller="FormCtrl">
+                        <input type="text" name="username" ng-model="model.username" class="form-control" placeholder="Username" required autofocus>
+                        <input type="password" name="password" ng-model="model.password" class="form-control" placeholder="Password" required>
+                        <button class="btn btn-lg btn-primary btn-block" ng-disabled="!isFormValid()" type="submit">
+                            Sign in</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+
 </div>
