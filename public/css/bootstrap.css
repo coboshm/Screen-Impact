@@ -4032,6 +4032,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 
 .navbar-nav > li {
     float: left;
+    width: 100%;
 }
 .navbar-nav > li > a {
     padding-top: 15px;
@@ -4706,6 +4707,20 @@ a.thumbnail.active {
   border: 1px solid transparent;
   border-radius: 4px;
 }
+
+.alert2 {
+    padding: 7px;
+    margin-bottom: 5px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert3 {
+    margin-bottom: 5px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
 .alert h4 {
   margin-top: 0;
   color: inherit;

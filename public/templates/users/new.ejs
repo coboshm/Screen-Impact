@@ -13,14 +13,12 @@
                     <%= error_msg %>
                 </div>
                 <% } %>
-                <div class="account-wall" >
+                <div class="account-wall-register" >
                     <img class="profile-img" src="/img/logo_only.png" alt="Screen Digital Signage Measure Logo">
-
-
                     <div class="form-box">
                         <form class="form-signin" action="/register" method="post" >
                             <% if (!error) { %>
-                            <div id="output-message" class="alert alert-not-danger">
+                            <div id="output-message" class="alert3 alert-not-danger">
                                 {{model.message}}
                             </div>
                             <% } %>

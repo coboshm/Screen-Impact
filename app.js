@@ -157,6 +157,7 @@ app.post('/apiWeb/add_screen', apiWeb.active_screen);
 
 
 app.post('/api/new_screen', api.new_screen);
+app.post('/api/is_active_screen', api.is_active_screen);
 app.post('/api/playlist', api.get_playlist);
 
 

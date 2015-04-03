@@ -125,7 +125,6 @@ input[type=search] {
 
 .space-content {
     display: inline-block;
-    width: 600px;
 }
 
 
@@ -249,12 +248,13 @@ p.float {
 
 }
 
-#output {
-    height: 45px;
+#output2 {
+    height: 32px;
     position: relative;
     margin: auto;
     width: 450px;
     margin-top: 10px;
     margin-bottom: 20px;
+    background-color: #AA4444;
     color: #fff;
 }
