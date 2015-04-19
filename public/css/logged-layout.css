@@ -26,6 +26,8 @@ html, body {
             margin: 0px 10px 10px 10px;
             float: left;
             bottom: auto;
+            position: fixed;
+            top: 80px;
         }
 
         #right-space {
@@ -41,15 +43,18 @@ html, body {
             border-bottom-width: 2px;
             width: 81%;
             float: left;
+            position: relative;
+            left: 18.5%;
+            top: 80px;
         }
 
         .company-logo {
             background: url('/img/logo.png') no-repeat;
-            background-size: 142px 54px;
+            background-size: 235px 29px;
             float: left;
             height: 54px;
-            margin: 9px 0 0 17px;
-            width: 168px;
+            margin: 21px 0 0 17px;
+            width: 235px;
         }
 
         header {
@@ -94,7 +99,7 @@ html, body {
 }
 
 .space {
-    margin-top: 80px;
+    margin-top: 0px;
 }
 
 
@@ -181,10 +186,10 @@ html, body {
 
     .company-logo {
         background: url('/img/logo.png') no-repeat;
-        background-size: 142px 54px;
+        background-size: 144px 18px;
         float: left;
         height: 54px;
-        margin: 9px 0 0 17px;
+        margin: 25px 0 0 17px;
         width: 168px;
     }
 }

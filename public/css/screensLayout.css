@@ -251,10 +251,9 @@ p.float {
 #output2 {
     height: 32px;
     position: relative;
-    margin: auto;
-    width: 450px;
+    width: 352px;
     margin-top: 10px;
     margin-bottom: 20px;
-    background-color: #AA4444;
+    background-color: #CD1B1B;
     color: #fff;
 }

@@ -94,7 +94,16 @@ playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$ht
         };
 
         var addItem = function(asset) {
-            asset_new = angular.copy(asset);
+            //console.log(asset);
+            asset_new = {
+                'tipo': asset.tipo,
+                'path': asset.path,
+                'duration': asset.duration,
+                'code': asset._id,
+                'name': asset.name,
+                'thumbnail': asset.thumbnail
+            };
+            //asset_new = angular.copy(asset);
             if (asset_new.tipo.split('/')[0] === 'image') {
                 asset_new.duration = 5;
             }
@@ -165,7 +174,7 @@ playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$ht
                 $scope.error = true;
                 $scope.serverErrorMessage = data;
             });
-        }
+        };
 
         var isValid = function() {
             if (($scope.from >= $scope.to) && !$scope.edit_all) return false;
@@ -173,7 +182,7 @@ playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$ht
             if ($scope.assets.length == 0 && !$scope.edit_all) return false;
 
             return true;
-        }
+        };
 
 
         var DurationTime = function(secs) {
@@ -199,7 +208,7 @@ playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$ht
                 ret = hours + ':' + minutes + ':' + seconds + ' minutes';
             }
             return ret;
-        }
+        };
 
         $rootScope.$on(EVENTS.EDIT_PLAYLIST, function(event, playlist) {
             $scope.from = playlist.from;

@@ -19,7 +19,7 @@
             <div class="space-content-new-screen">
                 <div ng-click="ctrScreen.back()" class="btn btn-info"><i class="fa fa-angle-double-left"></i>&nbsp;&nbsp;Back</div>
             </div>
-            <div style="display: inline-block">Burn your SD - <span style="font-weight: bold">Step 2/3</span> </div>
+            <div style="display: inline-block">Download the installation file - <span style="font-weight: bold">Step 2/3</span> </div>
             <div class="search-content">
                 <div ng-click="ctrScreen.next()" class="btn btn-success">Next&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i></div>
             </div>
@@ -32,19 +32,24 @@
             </div>
             <div style="display: inline-block">Insert your screen ID -<span style="font-weight: bold"> Step 3/3</span> </div>
         </div>
-        <div class="create-code-screen">
-            <div class="content-login">
-                <div id="output2" ng-show="error" class="alert2 alert-danger">
-                    {{serverErrorMessage}}
-                </div>
-                <div class="screen-container2">
-                    <div class="form-box">
-                        <form name="form">
-                            <input type="text" placeholder="Name of the Screen (place, description...)" ng-model="title" name="title" required>
-                            <input name="screenCode" ng-model="code"  type="text" placeholder="screen code" required>
-                            <button class="btn btn-info btn-block login" ng-disabled="!form.$valid" ng-click="ctrScreen.createScreen()" type="submit" >Add</button>
-                        </form>
+        <div>
+
+            <div ng-form="form">
+                <div id="right-space-minor">
+                    <div id="output2" ng-show="error" class="alert2 alert-danger">
+                        {{serverErrorMessage}}
                     </div>
+                    <div class="margin_top_space_minor">
+                        <p class="float">Name</p>
+                        <input type="text" ng-model="title" name="title" required tabindex="1" class="input-style-large" placeholder="Name of the Screen (place, description...)">
+                    </div>
+                    <div class="margin_top_space_minor">
+                        <p class="float">Code</p>
+                        <input type="text" name="screenCode" ng-model="code"  type="text" tabindex="2" class="input-style-large" placeholder="screen code" required>
+                    </div>
+                </div>
+                <div class="right-content">
+                    <div class="btn btn-success" ng-disabled="!form.$valid" ng-click="ctrScreen.createScreen()" type="submit" >Add Screen</div>
                 </div>
             </div>
         </div>

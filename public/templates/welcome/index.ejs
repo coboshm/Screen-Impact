@@ -14,8 +14,8 @@
                 <div class="account-wall">
                     <img class="profile-img" src="/img/logo_only.png" alt="Screen Digital Signage Measure Logo">
                     <form class="form-signin" action="/login" method="post" ng-controller="FormCtrl">
-                        <input type="text" name="username" ng-model="model.username" class="form-control" placeholder="Username" required autofocus>
-                        <input type="password" name="password" ng-model="model.password" class="form-control" placeholder="Password" required>
+                        <input type="text" name="username" ng-model="model.username" class="form-control text-login" placeholder="Username" required autofocus>
+                        <input type="password" name="password" ng-model="model.password" class="form-control pass-login" placeholder="Password" required>
                         <button class="btn btn-lg btn-primary btn-block" ng-disabled="!isFormValid()" type="submit">
                             Sign in</button>
                     </form>

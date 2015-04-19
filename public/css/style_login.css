@@ -162,6 +162,10 @@
     border-radius: 5px;
 }
 
+.form-box input[type="email"]{
+    border-radius: 5px;
+}
+
 .form-box input[type="password"]{
     border-radius:5px;
 }
@@ -242,13 +246,13 @@
 {
     z-index: 2;
 }
-.form-signin input[type="text"]
+.form-signin .text-login
 {
     margin-bottom: -1px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
-.form-signin input[type="password"]
+.form-signin .pass-login
 {
     margin-bottom: 10px;
     border-top-left-radius: 0;
@@ -285,8 +289,8 @@
 }
 .profile-img
 {
-    width: 310px;
-    height: 85px;
+    width: 235px;
+    height: 29px;
     margin: 0 auto 10px;
     display: block;
 }

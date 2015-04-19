@@ -8,6 +8,7 @@
 /.c9revisions/
 /.settings/
 /test/report/
+/public/odroid/
 .settings
 .classpath
 .project

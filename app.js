@@ -28,6 +28,8 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/public/templates');
 app.set('view engine', 'ejs');
 app.use('/public/uploads/', qt.static(__dirname + '/public/uploads'));
+app.use('/public/odroid/', qt.static(__dirname + '/public/odroid'));
+app.use('/public/odroid/software/', qt.static(__dirname + '/public/odroid/software'));
 app.use(express.favicon());
 app.use(express.bodyParser({ keepExtensions: true, uploadDir: __dirname + "/public/uploads" }));
 app.use(expressValidator);
@@ -158,6 +160,7 @@ app.post('/apiWeb/add_screen', apiWeb.active_screen);
 
 app.post('/api/new_screen', api.new_screen);
 app.post('/api/is_active_screen', api.is_active_screen);
+app.post('/api/set_impact', api.set_impact);
 app.post('/api/playlist', api.get_playlist);
 
 
