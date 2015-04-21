@@ -6,6 +6,8 @@ var express = require('express')
   , User = mongoose.model('User')
   , ScreenModel = require('./lib/models/screen')
   , Screen = mongoose.model('Screen')
+  , ImpactModel = require('./lib/models/statistics')
+  , Impact = mongoose.model('Impact')
   , welcome = require('./lib/controllers/welcome')
   , dashboard = require('./lib/controllers/dashboard')
   , apiWeb = require('./lib/controllers/apiWeb')
@@ -156,6 +158,7 @@ app.post('/apiWeb/new_group', apiWeb.newGroup);
 app.post('/apiWeb/edit_playlist', apiWeb.editPlaylist);
 app.post('/apiWeb/edit_group', apiWeb.editGroup);
 app.post('/apiWeb/add_screen', apiWeb.active_screen);
+app.post('/apiWeb/data_statistics', apiWeb.data_statistics)
 
 
 app.post('/api/new_screen', api.new_screen);

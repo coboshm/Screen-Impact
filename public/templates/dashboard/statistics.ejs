@@ -1,7 +1,41 @@
 <% layout(layoutPathLogged) -%>
+<% stylesheet('/css/ng-sortable.min.css') %>
+<% stylesheet('/css/playlistLayout.css') %>
+<% stylesheet('/css/ng-quick-date.css') %>
+<% stylesheet('/css/ng-quick-date-default-theme.css') %>
+<% stylesheet('/css/chosen.css') %>
 
-<div id="right-container">
-    <div id="right-space">
-        Welcome to your dashboard, <%= user.firstName %>.
+<div id="right-container" ng-app="ScreensApp" ng-controller="StatisticsController as ctrStatistics">
+    <div id="right-space-minor">
+
+        <div class="margin_top_space_minor">
+            <p class="float">Dates</p>
+            <quick-datepicker icon-class='fa fa-calendar' tabindex="1" name='from' ng-model='from' class="input-style-large" placeholder="From" ></quick-datepicker>
+            <quick-datepicker icon-class='fa fa-calendar' tabindex="2" name='to' ng-model='to' class="input-style-large" placeholder="To"></quick-datepicker>
+            <div ng-click="ctrStatistics.actualize()" ng-disabled="!ctrStatistics.filtred()" style="float: right;" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;&nbsp;Refresh Graph</div>
+
+        </div>
+
+        <div class="margin_top_space_minor">
+            <p class="float">Screens</p>
+            <select class="input-style-large" tabindex="3" multiple chosen ng-model="screens" ng-options="opt as opt.title for opt in allScreens track by opt._id">
+            </select>
+        </div>
+
+        <div class="margin_top_space_minor">
+            <p class="float">Groups</p>
+            <select class="input-style-large-3" tabindex="4" multiple chosen ng-model="groups" ng-options="opt as opt.title for opt in allGroups track by opt._id">
+            </select>
+        </div>
+
+        <div class="margin_top_space_minor">
+            <p class="float">Assets</p>
+            <select class="input-style-large-3" tabindex="5" multiple chosen ng-model="assets" ng-options="opt as opt.name for opt in allAssets track by opt._id">
+            </select>
+        </div>
+
+    </div>
+    <div id="right-space-minor-statistics">
+        <linechart data="data" options="options"></linechart>
     </div>
 </div>

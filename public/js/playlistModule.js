@@ -108,12 +108,12 @@ playlistModule.controller('NewPlaylistController', ['$rootScope', '$scope', '$ht
                 asset_new.duration = 5;
             }
             $scope.assets.push(asset_new);
-        }
+        };
 
         var quitItem = function(asset) {
             var index = $scope.assets.indexOf(asset);
             $scope.assets.splice(index, 1);
-        }
+        };
 
         var toggleModal2 = function(play, tipo){
             if (tipo.split('/')[0] === 'image') {

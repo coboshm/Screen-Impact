@@ -195,10 +195,6 @@ html, body {
 }
 
 
-
-
-
-
 #right-space-minor {
     margin: 0px 0px 10px 0px;
     border: 1px solid #d8d8d8;
@@ -206,6 +202,17 @@ html, body {
     width: 98%;
     border-bottom-width: 2px;
     padding: 10px;
+}
+
+#right-space-minor-statistics {
+    margin: 0px 0px 10px 0px;
+    border: 1px solid #d8d8d8;
+    background-color: #FEFEFE;
+    width: 98%;
+    border-bottom-width: 2px;
+    padding: 10px;
+    min-height: 350px;
+    
 }
 
 .navbar-nav > li.active-menu {
