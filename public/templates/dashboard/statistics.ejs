@@ -1,6 +1,6 @@
 <% layout(layoutPathLogged) -%>
 <% stylesheet('/css/ng-sortable.min.css') %>
-<% stylesheet('/css/playlistLayout.css') %>
+<% stylesheet('/css/statisticsLayout.css') %>
 <% stylesheet('/css/ng-quick-date.css') %>
 <% stylesheet('/css/ng-quick-date-default-theme.css') %>
 <% stylesheet('/css/chosen.css') %>
@@ -9,12 +9,19 @@
     <div id="right-space-minor">
 
         <div class="margin_top_space_minor">
-            <p class="float">Dates</p>
-            <quick-datepicker icon-class='fa fa-calendar' tabindex="1" name='from' ng-model='from' class="input-style-large" placeholder="From" ></quick-datepicker>
-            <quick-datepicker icon-class='fa fa-calendar' tabindex="2" name='to' ng-model='to' class="input-style-large" placeholder="To"></quick-datepicker>
+            <p class="float">Day</p>
+            <quick-datepicker icon-class='fa fa-calendar' disable-timepicker="true" tabindex="1" name='from' ng-model='day' class="input-style-large-statistics" placeholder="From" ></quick-datepicker>
+
+            <p class="float_times">From:</p>
+            <timepicker ng-model="time_from" show-meridian="false" ng-change="changed()" hour-step="hstep" minute-step="mstep" ></timepicker>
+
+            <p class="float_times">To:</p>
+            <timepicker ng-model="time_to" show-meridian="false" ng-change="changed()" hour-step="hstep" minute-step="mstep" ></timepicker>
+
             <div ng-click="ctrStatistics.actualize()" ng-disabled="!ctrStatistics.filtred()" style="float: right;" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;&nbsp;Refresh Graph</div>
 
         </div>
+
 
         <div class="margin_top_space_minor">
             <p class="float">Screens</p>
