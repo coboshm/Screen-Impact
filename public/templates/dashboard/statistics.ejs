@@ -18,6 +18,11 @@
             <p class="float_times">To:</p>
             <timepicker ng-model="time_to" show-meridian="false" ng-change="changed()" hour-step="hstep" minute-step="mstep" ></timepicker>
 
+
+            <label style="margin-left: 20px;" class="statistics_radio"><input type="radio"  ng-model="people" ng-value="true">People</label>
+            <label class="statistics_radio"><input type="radio"  ng-model="people" ng-value="false">Motion </label>
+
+
             <div ng-click="ctrStatistics.actualize()" ng-disabled="!ctrStatistics.filtred()" style="float: right;" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;&nbsp;Refresh Graph</div>
 
         </div>

@@ -50,10 +50,9 @@ html, body {
 
         .company-logo {
             background: url('/img/logo.png') no-repeat;
-            background-size: 235px 29px;
             float: left;
             height: 54px;
-            margin: 21px 0 0 17px;
+            margin: 13px 0 0 17px;
             width: 235px;
         }
 
@@ -186,10 +185,9 @@ html, body {
 
     .company-logo {
         background: url('/img/logo.png') no-repeat;
-        background-size: 144px 18px;
         float: left;
         height: 54px;
-        margin: 25px 0 0 17px;
+        margin: 15px 0 0 17px;
         width: 168px;
     }
 }

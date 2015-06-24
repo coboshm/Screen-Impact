@@ -20,6 +20,8 @@ statisticsModule.controller('StatisticsController', ['$rootScope', '$scope', '$h
         $scope.hstep = 1;
         $scope.mstep = 1;
 
+        $scope.people = true;
+
 
         $scope.assets = [];
         $scope.groups = [];
@@ -39,13 +41,22 @@ statisticsModule.controller('StatisticsController', ['$rootScope', '$scope', '$h
                     type: "date",
                     key: "createdAt"
                 },
-                y: {type: 'column', min: 0}
+                y: {type: $scope.type_graph,
+                          labelFunction: function (v) {
+                            if (!$scope.people) {
+                                if (v < 1) return 'Nothing';
+                                if (v >= 2 && v < 5) return 'low';
+                                if (v >= 5 && v < 9) return 'Medium';
+                                if (v >= 9) return 'High';
+                            } else return v;
+                          }
+                           , min: 0}
             },series: [
                 {
                     y: "people",
                     label: "Impact Graph",
                     color: "#298A08",
-                    type: "area",
+                    type: 'area',
                     thickness: "1px"
                 }
             ],
@@ -70,19 +81,30 @@ statisticsModule.controller('StatisticsController', ['$rootScope', '$scope', '$h
                 from: $scope.from,
                 to: $scope.to,
                 assets: $scope.assets,
-                groups: $scope.groups
+                groups: $scope.groups,
+                type: $scope.people
             };
+
             $http({
                 url: '/apiWeb/data_statistics',
                 method: 'POST',
                 data: playlist
             }).success(function(res) {
                 $scope.data = [];
-                for (var i = 0; i < res.length; ++i ) {
-                    $scope.data.push({
-                        'createdAt': new Date(res[i].createdAt),
-                        'people': res[i].people
-                    });
+                if ($scope.people) {
+                    for (var i = 0; i < res.length; ++i) {
+                        $scope.data.push({
+                            'createdAt': new Date(res[i].createdAt),
+                            'people': res[i].people
+                        });
+                    }
+                } else {
+                    for (var i = 0; i < res.length; ++i) {
+                        $scope.data.push({
+                            'createdAt': new Date(res[i].createdAt),
+                            'people': res[i].motion
+                        });
+                    }
                 }
             }).error(function(data, status, headers, config) {
 
